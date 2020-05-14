@@ -8,7 +8,8 @@ const HighlightArticle = ({ article }) => {
                     {`${article.title.slice(0,75)}...`}
                 </div>
                 <div className='highlight-article__content__description'>
-                    {article.content ? article.content.slice(0,260) : article.description.slice(0,260)}
+                    {article.content ? article.content.slice(0,260) :
+                    article.description? article.description.slice(0,260):<span>Read Article</span>}
                 </div>
             </div>
             <img className='highlight-article__img'src={article.urlToImage} alt={article.title}/>

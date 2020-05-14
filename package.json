@@ -19,6 +19,7 @@
     "react-select": "^2.4.4",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "translate": "^1.1.2",
     "typeface-roboto": "0.0.75"
   },
   "scripts": {

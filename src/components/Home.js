@@ -1,14 +1,19 @@
 import React, { useEffect, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
 import { useHistory } from 'react-router-dom';
+import translate from 'translate';
 
-import HighlightArticle from './HighlightArticle';
+import HighlightArticle from './ImgCardHorizontal_M';
+// import HighlightArticle from './HighlightArticle';
+// import HighlightArticle from './HighlightArticle2_M';
+
 import ImgCard from './ImgCard_M';
-
 import { loadArticles } from '../global';
 import { setArticles } from '../store/state';
 import { newsUrlTopCountry, apiKEY } from '../config';
+
+const NewsAPI = require('newsapi');
+const newsapi = new NewsAPI(apiKEY);
 
 
 
@@ -35,19 +40,36 @@ const Home = () => {
             }else {
                 try {
                             const response = await fetch(`${newsUrlTopCountry}${currCountry}&apiKey=${apiKEY}`);
-                            // const response = await newsapi.v2.topHeadlines({
+                            // newsapi.v2.topHeadlines({
+                            //     q: 'bitcoin',
+                            //     category: 'business',
                             //     language: 'en',
-                            //     country: currCountry
-                            // });
+                            //     country: 'us'
+                            //   }).then(response => {
+                            //     console.log(response);
+                            //     /*
+                            //       {
+                            //         status: "ok",
+                            //         articles: [...]
+                            //       }
+                            //     */
+                            //   });
                             console.log('language en')
                             if (response.ok) {
                                 const { articles } = await response.json();
+                                // if (currCountry !== 'us') {
+                                //     const testArticle = await translate(articles[0].title, 'en');
+                                //     console.log('test article', testArticle)
+                                // }
+                                console.log('articles 64', articles)
                                 dispatch(setArticles(articles));
-                                localStorage.setItem(`worldViewArticles-layoutDev-${currCountry}`, articles);                            }
+                                localStorage.setItem(`worldViewArticles-layoutDev-${currCountry}`, JSON.stringify(articles));
+                            }
                         } catch(e) { console.log(e); }
             }
         })();
             if (articles) console.log('articles in Home', articles);
+
     }, [currCountry]);
     return (
         <div className='home-container'>

@@ -11,6 +11,7 @@ import SearchForm from './components/SearchForm';
 import Home from './components/Home';
 import StatusBar from './components/StatusBar';
 import Results from './components/Results';
+import Swipable from './components/SwipableDrawer_M';
 
 const App = () => (
   <BrowserRouter>

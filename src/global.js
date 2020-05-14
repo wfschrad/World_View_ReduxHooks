@@ -74,6 +74,17 @@ export const newsCountries = {
     Venuzuela: 've'
 }
 
+export const engCountries = {
+    Australia: 'au',
+    Canada: 'ca',
+    Ireland: 'ie',
+    "New Zealand": 'nz',
+    Philippines: 'ph',
+    "South Africa": 'za',
+    "United Kingdowm": 'gb',
+    "United States": 'us',
+}
+
 // const login = (token) => {
 //     window.localStorage.setItem("state-worldViewElite-token", token);
 //     setAuthToken(token);

@@ -10,27 +10,18 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
     root: {
-        display: "flex",
-        // flexDirection: 'row',
-        maxWidth: "840px",
-        maxHeight: "320px",
-        marginBottom: "20px"
+        maxWidth: 267,
     },
     typography: {
         fontSize: "14px"
     },
     cardActionArea: {
-        maxHeight: "320px"
+        maxHeight: "220px"
     }
 });
 
-export default function ImgMediaCard({ article }) {
-
+export default function ImgMediaCard( { article }) {
     const classes = useStyles();
-
-    // if (articles.length === 0) return (
-    //     <div>Loading...</div>
-    // );
 
     return (
         <Card className={classes.root}>
