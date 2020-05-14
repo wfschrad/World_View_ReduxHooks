@@ -10,12 +10,15 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import CountrySelect from './CountrySelect';
-
 import NestedList from './NestedList_M';
-import { useSelector, useDispatch } from 'react-redux';
-
 import MenuIcon from '@material-ui/icons/Menu';
+import SearchButton from './SearchButton_M';
+
+import { useSelector, useDispatch } from 'react-redux';
+import CountrySelect from './CountrySelect';
+import CategorySelect from './CategorySelect';
+
+
 
 
 const useStyles = makeStyles({
@@ -68,6 +71,15 @@ export default function SwipeableTemporaryDrawer() {
       <List>
           <ListItem>
           <CountrySelect/>
+          </ListItem>
+          <ListItem>
+          <CategorySelect/>
+          </ListItem>
+          <ListItem>
+          <CategorySelect/>
+          </ListItem>
+          <ListItem>
+          <SearchButton/>
           </ListItem>
         {/* {['Country', 'Category', 'Topic'].map((text, index) => (
           <ListItem button key={text}>
