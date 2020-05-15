@@ -28,6 +28,14 @@ const useStyles = makeStyles({
   fullList: {
     width: 'auto',
   },
+  listItemCustom: {
+      marginBottom: '40px'
+  },
+  listHeading: {
+      color: 'black',
+      fontWeight: '600',
+      marginBotton: '20px'
+  }
 });
 
 export default function SwipeableTemporaryDrawer() {
@@ -69,18 +77,21 @@ export default function SwipeableTemporaryDrawer() {
       </List>
       <Divider />
       <List>
-          <ListItem>
-          <CountrySelect/>
-          </ListItem>
-          <ListItem>
-          <CategorySelect/>
-          </ListItem>
-          <ListItem>
-          <CategorySelect/>
-          </ListItem>
-          <ListItem>
-          <SearchButton/>
-          </ListItem>
+            <ListItem>
+                <h1 className={classes.listHeading}>Custom Search</h1>
+            </ListItem>
+            <ListItem>
+                <CountrySelect className={classes.listItemCustom}/>
+            </ListItem>
+            <ListItem>
+                <CategorySelect className={classes.listItem}/>
+            </ListItem>
+            <ListItem>
+                <CategorySelect className={classes.listItem}/>
+            </ListItem>
+            <ListItem>
+                <SearchButton/>
+            </ListItem>
         {/* {['Country', 'Category', 'Topic'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon onClick={()=>console.log('clicked')}>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>

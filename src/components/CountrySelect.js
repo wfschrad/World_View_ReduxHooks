@@ -18,7 +18,7 @@ export default function ComboBox() {
 
     const handleChange = (ev, newVal) => {
         dispatch(setCurrCountry(newsCountries[newVal]));
-        history.push('/');
+        // history.push('/');
         console.log('newVal', newVal)
     }
     return (
