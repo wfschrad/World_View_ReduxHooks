@@ -40,8 +40,8 @@ const Navigation = () => {
         {/* <NavCrumbs style={{fontSize: 30, color: "white", marginLeft: "20px"}}/> */}
       </span>
       <span className='nav-container__center'>
-        {/* <h1 className='nav-container__h1'>World View</h1> */}
-        <div className='logo-container'><img className='logo' src='../assets/images/wvLogo.png' /></div>
+        <h1 className='nav-container__h1'>World View</h1>
+        {/* <div className='logo-container'><img className='logo' src='../assets/images/wvLogo.png' /></div> */}
         {/* <span className='nav-container__center__country'>{`Current Country: ${currCountry.toUpperCase()}`}</span> */}
       </span>
       <span className='nav-container__right'>

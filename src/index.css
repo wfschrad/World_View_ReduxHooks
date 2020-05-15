@@ -17,7 +17,6 @@
 
 .nav-container {
     display: flex;
-    height: 80px;
     width: 100%;
     background-color: rgba(104, 5, 5, 1);
     color: white;
@@ -70,6 +69,8 @@
 .status-bar {
     display: grid;
     grid-template-columns: 10% 80% 10%;
+    display: flex;
+    justify-content: space-between;
     background-color: rgb(75,75,75);
     color: white;
     font-weight: 900;
@@ -84,7 +85,7 @@
 
 .statusEl__result {
     margin-left: 4px;
-    color: purple;
+    text-decoration: underline;
 }
 
 .status-bar__select {
@@ -96,11 +97,11 @@
     margin-bottom: 8px;
 }
 
-/* .status-bar__center {
+.status-bar__center {
     display: flex;
     justify-content: space-between;
     align-items: center;
-} */
+}
 
 .link-selected {
     color: rgb(109, 11, 11);
