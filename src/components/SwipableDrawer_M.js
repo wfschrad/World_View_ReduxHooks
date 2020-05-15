@@ -17,7 +17,8 @@ import SearchButton from './SearchButton_M';
 import { useSelector, useDispatch } from 'react-redux';
 import CountrySelect from './CountrySelect';
 import CategorySelect from './CategorySelect';
-
+import { newsUrlTopCountry, apiKEY } from '../config';
+import { setArticles } from '../store/state';
 
 
 
@@ -39,6 +40,14 @@ const useStyles = makeStyles({
 });
 
 export default function SwipeableTemporaryDrawer() {
+    //subscribe to state
+
+    const currCountry = useSelector((state) => state.currCountry);
+    const currCategory = useSelector((state) => state.currCategory);
+    const currKeyword = useSelector((state) => state.currKeyword);
+    const dispatch = useDispatch();
+
+
     const isOpen = useSelector((state) => state.drawererIsOpen);
     console.log('isOpen', isOpen)
 
@@ -58,6 +67,45 @@ export default function SwipeableTemporaryDrawer() {
     setState({ ...state, [anchor]: open });
   };
 
+  const handleSearch = async () => {
+      console.log('search button clicked')
+    const storedArticles = localStorage.getItem(`worldViewArticles-layoutDev-${currCountry}`);
+            if (storedArticles && storedArticles !== 'undefined') {
+                console.log('stored in...', storedArticles);
+                const parsedArticles = JSON.parse(storedArticles);
+                dispatch(setArticles(parsedArticles));
+            }else {
+                try {
+                            const response = await fetch(`${newsUrlTopCountry}${currCountry}&apiKey=${apiKEY}`);
+                            // newsapi.v2.topHeadlines({
+                            //     q: 'bitcoin',
+                            //     category: 'business',
+                            //     language: 'en',
+                            //     country: 'us'
+                            //   }).then(response => {
+                            //     console.log(response);
+                            //     /*
+                            //       {
+                            //         status: "ok",
+                            //         articles: [...]
+                            //       }
+                            //     */
+                            //   });
+                            console.log('language en')
+                            if (response.ok) {
+                                const { articles } = await response.json();
+                                // if (currCountry !== 'us') {
+                                //     const testArticle = await translate(articles[0].title, 'en');
+                                //     console.log('test article', testArticle)
+                                // }
+                                console.log('articles 64', articles)
+                                dispatch(setArticles(articles));
+                                localStorage.setItem(`worldViewArticles-layoutDev-${currCountry}`, JSON.stringify(articles));
+                            }
+                        } catch(e) { console.log(e); }
+            }
+  }
+
   const list = (anchor) => (
     <div
       className={clsx(classes.list, {
@@ -65,7 +113,7 @@ export default function SwipeableTemporaryDrawer() {
       })}
       role="presentation"
     //   onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
+    //   onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
         {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
@@ -90,7 +138,7 @@ export default function SwipeableTemporaryDrawer() {
                 <CategorySelect className={classes.listItem}/>
             </ListItem>
             <ListItem>
-                <SearchButton/>
+                <SearchButton onClick={handleSearch}/>
             </ListItem>
         {/* {['Country', 'Category', 'Topic'].map((text, index) => (
           <ListItem button key={text}>

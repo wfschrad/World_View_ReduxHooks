@@ -6,6 +6,15 @@
 }
 /* NAVIGATION */
 
+.rootLogo {
+    height: 80px;
+    width: 140px;
+}
+.rootLogo {
+    height: 80px;
+    width: 140px;
+}
+
 .nav-container {
     display: flex;
     height: 80px;
@@ -43,7 +52,7 @@
 .nav-container__right--loggedOut {
     color: white;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 16px;
     text-decoration: none;
     align-self: center;
     margin-left: 30px;

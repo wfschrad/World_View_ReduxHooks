@@ -70,7 +70,7 @@ const Home = () => {
         })();
             if (articles) console.log('articles in Home', articles);
 
-    }, [currCountry]);
+    }, []);
     return (
         <div className='home-container'>
             <div className='home-main__left'></div>
