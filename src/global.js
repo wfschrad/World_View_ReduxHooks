@@ -1,4 +1,4 @@
-import { newsUrlTopCountry, newsUrlTopCountryV1, apiKEY } from "./config";
+import { newsUrlTopCountry, newsUrlTopCountryV1, apiKEY, newsUrlBase } from "./config";
 import { useSelector, useDispatch } from 'react-redux';
 
 import { setArticles } from './store/state';
@@ -84,6 +84,8 @@ export const engCountries = {
     "United Kingdowm": 'gb',
     "United States": 'us',
 }
+
+
 
 // const login = (token) => {
 //     window.localStorage.setItem("state-worldViewElite-token", token);
