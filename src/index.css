@@ -49,6 +49,10 @@
     margin-left: 30px;
 }
 
+.logo-container {
+    height:80px;
+}
+
 .cat-select {
     width:400px;
 }
