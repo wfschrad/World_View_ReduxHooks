@@ -34,18 +34,19 @@ const Navigation = () => {
             <i className="fa fa-search"></i>
           </div> */}
         {/* <MenuIcon onClick={menuClick} style={{ fontSize: 30 }}/> */}
-        <Swipable />
         <a className='nav-container__right--loggedOut' href='/login'>Login</a>
         <a className='nav-container__right--loggedOut' href='/login'>Join</a>
+        <Swipable />
         {/* <NavCrumbs style={{fontSize: 30, color: "white", marginLeft: "20px"}}/> */}
       </span>
       <span className='nav-container__center'>
         {/* <h1 className='nav-container__h1'>World View</h1> */}
         <div className='logo-container'><img className='logo' src='../assets/images/wvLogo.png' /></div>
-        <span className='nav-container__center__country'>{`Current Country: ${currCountry.toUpperCase()}`}</span>
+        {/* <span className='nav-container__center__country'>{`Current Country: ${currCountry.toUpperCase()}`}</span> */}
       </span>
       <span className='nav-container__right'>
-        <HomeIcon onClick={homeClick} style={{ fontSize: 30 }} />
+        <MenuIcon />
+        <HomeIcon onClick={homeClick} style={{ fontSize: 30, marginLeft: '10px' }} />
 
       </span>
     </div>

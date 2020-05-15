@@ -13,6 +13,8 @@ import MailIcon from '@material-ui/icons/Mail';
 import NestedList from './NestedList_M';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchButton from './SearchButton_M';
+import SearchIcon from '@material-ui/icons/SearchOutlined';
+
 
 import { useSelector, useDispatch } from 'react-redux';
 import CountrySelect from './CountrySelect';
@@ -30,26 +32,26 @@ const useStyles = makeStyles({
     width: 'auto',
   },
   listItemCustom: {
-      marginBottom: '40px'
+    marginBottom: '40px'
   },
   listHeading: {
-      color: 'black',
-      fontWeight: '600',
-      marginBotton: '20px'
+    color: 'black',
+    fontWeight: '600',
+    marginBotton: '20px'
   }
 });
 
 export default function SwipeableTemporaryDrawer() {
-    //subscribe to state
+  //subscribe to state
 
-    const currCountry = useSelector((state) => state.currCountry);
-    const currCategory = useSelector((state) => state.currCategory);
-    const currKeyword = useSelector((state) => state.currKeyword);
-    const dispatch = useDispatch();
+  const currCountry = useSelector((state) => state.currCountry);
+  const currCategory = useSelector((state) => state.currCategory);
+  const currKeyword = useSelector((state) => state.currKeyword);
+  const dispatch = useDispatch();
 
 
-    const isOpen = useSelector((state) => state.drawererIsOpen);
-    console.log('isOpen', isOpen)
+  const isOpen = useSelector((state) => state.drawererIsOpen);
+  console.log('isOpen', isOpen)
 
   const classes = useStyles();
   const [state, setState] = React.useState({
@@ -68,42 +70,42 @@ export default function SwipeableTemporaryDrawer() {
   };
 
   const handleSearch = async () => {
-      console.log('search button clicked')
+    console.log('search button clicked')
     const storedArticles = localStorage.getItem(`worldViewArticles-layoutDev-${currCountry}`);
-            if (storedArticles && storedArticles !== 'undefined') {
-                console.log('stored in...', storedArticles);
-                const parsedArticles = JSON.parse(storedArticles);
-                dispatch(setArticles(parsedArticles));
-            }else {
-                try {
-                            const response = await fetch(`${newsUrlTopCountry}${currCountry}&apiKey=${apiKEY}`);
-                            // newsapi.v2.topHeadlines({
-                            //     q: 'bitcoin',
-                            //     category: 'business',
-                            //     language: 'en',
-                            //     country: 'us'
-                            //   }).then(response => {
-                            //     console.log(response);
-                            //     /*
-                            //       {
-                            //         status: "ok",
-                            //         articles: [...]
-                            //       }
-                            //     */
-                            //   });
-                            console.log('language en')
-                            if (response.ok) {
-                                const { articles } = await response.json();
-                                // if (currCountry !== 'us') {
-                                //     const testArticle = await translate(articles[0].title, 'en');
-                                //     console.log('test article', testArticle)
-                                // }
-                                console.log('articles 64', articles)
-                                dispatch(setArticles(articles));
-                                localStorage.setItem(`worldViewArticles-layoutDev-${currCountry}`, JSON.stringify(articles));
-                            }
-                        } catch(e) { console.log(e); }
-            }
+    if (storedArticles && storedArticles !== 'undefined') {
+      console.log('stored in...', storedArticles);
+      const parsedArticles = JSON.parse(storedArticles);
+      dispatch(setArticles(parsedArticles));
+    } else {
+      try {
+        const response = await fetch(`${newsUrlTopCountry}${currCountry}&apiKey=${apiKEY}`);
+        // newsapi.v2.topHeadlines({
+        //     q: 'bitcoin',
+        //     category: 'business',
+        //     language: 'en',
+        //     country: 'us'
+        //   }).then(response => {
+        //     console.log(response);
+        //     /*
+        //       {
+        //         status: "ok",
+        //         articles: [...]
+        //       }
+        //     */
+        //   });
+        console.log('language en')
+        if (response.ok) {
+          const { articles } = await response.json();
+          // if (currCountry !== 'us') {
+          //     const testArticle = await translate(articles[0].title, 'en');
+          //     console.log('test article', testArticle)
+          // }
+          console.log('articles 64', articles)
+          dispatch(setArticles(articles));
+          localStorage.setItem(`worldViewArticles-layoutDev-${currCountry}`, JSON.stringify(articles));
+        }
+      } catch (e) { console.log(e); }
+    }
   }
 
   const list = (anchor) => (
@@ -125,21 +127,21 @@ export default function SwipeableTemporaryDrawer() {
       </List>
       <Divider />
       <List>
-            <ListItem>
-                <h1 className={classes.listHeading}>Custom Search</h1>
-            </ListItem>
-            <ListItem>
-                <CountrySelect className={classes.listItemCustom}/>
-            </ListItem>
-            <ListItem>
-                <CategorySelect className={classes.listItem}/>
-            </ListItem>
-            <ListItem>
-                <CategorySelect className={classes.listItem}/>
-            </ListItem>
-            <ListItem>
-                <SearchButton onClick={handleSearch}/>
-            </ListItem>
+        <ListItem>
+          <h1 className={classes.listHeading}>Custom Search</h1>
+        </ListItem>
+        <ListItem>
+          <CountrySelect className={classes.listItemCustom} />
+        </ListItem>
+        <ListItem>
+          <CategorySelect className={classes.listItem} />
+        </ListItem>
+        <ListItem>
+          <CategorySelect className={classes.listItem} />
+        </ListItem>
+        <ListItem>
+          <SearchButton onClick={handleSearch} />
+        </ListItem>
         {/* {['Country', 'Category', 'Topic'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon onClick={()=>console.log('clicked')}>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
@@ -154,10 +156,10 @@ export default function SwipeableTemporaryDrawer() {
     <div>
       {['left'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <MenuIcon
+          <SearchIcon
             onClick={toggleDrawer(anchor, true)}
-            style={{ fontSize: 30 }}>{anchor}
-          </MenuIcon>
+            style={{ fontSize: 30, marginLeft: '10px' }}>{anchor}
+          </SearchIcon>
           <SwipeableDrawer
             anchor={anchor}
             open={state[anchor]}
