@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useHistory } from 'react-router-dom'
 
 import { API } from '../config';
 
@@ -20,7 +21,7 @@ function Copyright() {
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
             <Link color="inherit" href="https://material-ui.com/">
-                Your Website
+                World View
       </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -31,6 +32,7 @@ function Copyright() {
 const handleSignup = async (ev) => {
     ev.preventDefault();
     const formData = new FormData(document.getElementById('signupForm'));
+    const firstName = formData.get('firstName');
     const userEmail = formData.get('email');
     const userPass = formData.get('password');
 
@@ -40,6 +42,7 @@ const handleSignup = async (ev) => {
         const res = await fetch(`${API}users/signup`, {
             method: 'POST',
             body: JSON.stringify({
+                firstName,
                 email: userEmail,
                 password: userPass
             }),
@@ -55,6 +58,7 @@ const handleSignup = async (ev) => {
 
         localStorage.setItem('worldViewjtid_ACCESS_TOKEN', token);
         localStorage.setItem('worldViewjtid_CURRENT_USER_ID', id);
+
 
 
     } catch (e) { console.log(e); }
@@ -91,10 +95,21 @@ export default function SignUp() {
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    Sign up
+                    Join World View
         </Typography>
                 <form id="signupForm" className={classes.form} onSubmit={handleSignup}>
                     <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="firstName"
+                                label="First Name"
+                                name="firstName"
+                                autoComplete="name"
+                            />
+                        </Grid>
                         <Grid item xs={12}>
                             <TextField
                                 variant="outlined"
@@ -132,7 +147,7 @@ export default function SignUp() {
                         color="primary"
                         className={classes.submit}
                     >
-                        Sign Up
+                        Join
           </Button>
                     <Grid container justify="flex-end">
                         <Grid item>

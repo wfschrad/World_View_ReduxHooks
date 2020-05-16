@@ -58,9 +58,13 @@
 }
 
 .logo-container {
-    height:80px;
-    width: 140px;
-    background-image: url('./components/logo.jpg')
+    height: 56px;
+    width: 56px;
+}
+.logo-container > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .cat-select {

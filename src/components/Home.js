@@ -3,9 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import translate from 'translate';
 
-import HighlightArticle from './ImgCardHorizontal_M';
+// import HighlightArticle from './ImgCardHorizontal_M';
 // import HighlightArticle from './HighlightArticle';
 // import HighlightArticle from './HighlightArticle2_M';
+import HighlightArticle from './uiCard';
 
 import ImgCard from './ImgCard_M';
 import { loadArticles } from '../global';

@@ -11,6 +11,11 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
     root: {
         maxWidth: 267,
+        transition: '.5s',
+        '&:hover': {
+            boxShadow: "7px 7px 5px 0px rgba(50, 50, 50, 0.5)",
+            transform: "translate(2px, -8px)"
+        }
     },
     typography: {
         fontSize: "14px"
@@ -20,7 +25,7 @@ const useStyles = makeStyles({
     }
 });
 
-export default function ImgMediaCard( { article }) {
+export default function ImgMediaCard({ article }) {
     const classes = useStyles();
 
     return (
@@ -35,11 +40,11 @@ export default function ImgMediaCard( { article }) {
                 />
                 <CardContent >
                     <Typography className={classes.typography} gutterBottom variant="h5" component="h2">
-                        {`${article.title.slice(0,90)}...`}
-          </Typography>
+                        {`${article.title.slice(0, 90)}...`}
+                    </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
                         {/* {article.description} */}
-          </Typography>
+                    </Typography>
                 </CardContent>
             </CardActionArea>
             <CardActions>

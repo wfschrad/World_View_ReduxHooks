@@ -10,6 +10,8 @@ import SaveIcon from '@material-ui/icons/Save';
 import { newsUrlTopCountry, apiKEY, newsUrlBase } from '../config';
 import { setArticles } from '../store/state';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -26,6 +28,8 @@ export default function IconLabelButtons() {
   const currKeyword = useSelector((state) => state.currKeyword);
   const dispatch = useDispatch();
 
+  let history = useHistory();
+
 
   const buildQueryString = () => {
     // const currCountry = useSelector((state) => state.currCountry);
@@ -34,8 +38,7 @@ export default function IconLabelButtons() {
 
     //top-headlines
 
-    let qs = `${newsUrlBase}/top-headlines?
-        country=${currCountry}&`;
+    let qs = `${newsUrlBase}top-headlines?country=${currCountry}&`;
 
     if (currCategory !== 'none') {
       qs += `category=${currCategory}&`;
@@ -45,48 +48,51 @@ export default function IconLabelButtons() {
       qs += `q=${currKeyword}&`;
     }
 
-    qs += `language=en&apiKey=${apiKEY}`;
+    qs += `apiKey=${apiKEY}`;
     return qs;
   }
 
   const handleSearch = async () => {
     console.log('search button clicked')
     const storedArticles = localStorage.getItem(`worldViewArticles-layoutDev-${currCountry}`);
-    if (storedArticles && storedArticles !== 'undefined') {
-      console.log('stored in...', storedArticles);
-      const parsedArticles = JSON.parse(storedArticles);
-      dispatch(setArticles(parsedArticles));
-    } else {
-      try {
-        const qs = buildQueryString();
-        const response = await fetch(qs);
-        // newsapi.v2.topHeadlines({
-        //     q: 'bitcoin',
-        //     category: 'business',
-        //     language: 'en',
-        //     country: 'us'
-        //   }).then(response => {
-        //     console.log(response);
-        //     /*
-        //       {
-        //         status: "ok",
-        //         articles: [...]
-        //       }
-        //     */
-        //   });
-        console.log('language en')
-        if (response.ok) {
-          const { articles } = await response.json();
-          // if (currCountry !== 'us') {
-          //     const testArticle = await translate(articles[0].title, 'en');
-          //     console.log('test article', testArticle)
-          // }
-          console.log('articles 64', articles)
-          dispatch(setArticles(articles));
-          localStorage.setItem(`worldViewArticles-layoutDev-${currCountry}`, JSON.stringify(articles));
-        }
-      } catch (e) { console.log(e); }
-    }
+    // if (storedArticles && storedArticles !== 'undefined') {
+    //   console.log('stored in...', storedArticles);
+    //   const parsedArticles = JSON.parse(storedArticles);
+    //   dispatch(setArticles(parsedArticles));
+    //   history.push('/');
+    // } else {
+    try {
+      const qs = buildQueryString();
+      console.log('qs', qs)
+      const response = await fetch(qs);
+      // newsapi.v2.topHeadlines({
+      //     q: 'bitcoin',
+      //     category: 'business',
+      //     language: 'en',
+      //     country: 'us'
+      //   }).then(response => {
+      //     console.log(response);
+      //     /*
+      //       {
+      //         status: "ok",
+      //         articles: [...]
+      //       }
+      //     */
+      //   });
+      console.log('language en')
+      if (response.ok) {
+        const { articles } = await response.json();
+        // if (currCountry !== 'us') {
+        //     const testArticle = await translate(articles[0].title, 'en');
+        //     console.log('test article', testArticle)
+        // }
+        console.log('articles 64', articles)
+        dispatch(setArticles(articles));
+        localStorage.setItem(`worldViewArticles-layoutDev-${currCountry}`, JSON.stringify(articles));
+        // history.push('/');
+      }
+    } catch (e) { console.log(e); }
+    // }
   }
 
   return (

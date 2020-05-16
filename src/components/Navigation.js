@@ -6,16 +6,18 @@ import { useHistory } from 'react-router-dom';
 
 import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/HomeOutlined';
-import NavCrumbs from './NavBreadCrumbs_M';
 import { withTheme } from '@material-ui/core';
 import Swipable from './SwipableDrawer_M';
 
 import { setDrawerer } from '../store/state';
+import logo from './logo.jpg'
 
 
 const Navigation = () => {
   const currCountry = useSelector((state) => state.currCountry);
   const drawererIsOpen = useSelector((state) => state.drawererIsOpen)
+  const user = useSelector((state) => state.user);
+
   let dispatch = useDispatch();
 
   let history = useHistory();
@@ -34,14 +36,17 @@ const Navigation = () => {
             <i className="fa fa-search"></i>
           </div> */}
         {/* <MenuIcon onClick={menuClick} style={{ fontSize: 30 }}/> */}
-        <a className='nav-container__right--loggedOut' href='/login'>Login</a>
-        <a className='nav-container__right--loggedOut' href='/login'>Join</a>
+        {user ? <a className='nav-container__right--loggedOut' href='/logout'>Logout</a>
+          : <>
+            <a className='nav-container__right--loggedOut' href='/login'>Login</a>
+            <a className='nav-container__right--loggedOut' href='/Signup'>Join</a>
+          </>}
         <Swipable />
         {/* <NavCrumbs style={{fontSize: 30, color: "white", marginLeft: "20px"}}/> */}
       </span>
       <span className='nav-container__center'>
-        <h1 className='nav-container__h1'>World View</h1>
-        {/* <div className='logo-container'><img className='logo' src='../assets/images/wvLogo.png' /></div> */}
+        {/* <h1 className='nav-container__h1'>World View</h1> */}
+        <div className='logo-container'><img className='logo' src={logo} /></div>
         {/* <span className='nav-container__center__country'>{`Current Country: ${currCountry.toUpperCase()}`}</span> */}
       </span>
       <span className='nav-container__right'>
