@@ -1,6 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCurrKeyword } from '../store/state';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -14,9 +17,17 @@ const useStyles = makeStyles((theme) => ({
 export default function BasicTextFields() {
     const classes = useStyles();
 
+    const currKeyword = useSelector((state) => state.currKeyword);
+    const dispatch = useDispatch();
+
+    const handleChange = (ev) => {
+        dispatch(setCurrKeyword(ev.target.value));
+    }
+
     return (
         <form className={classes.root} noValidate autoComplete="off">
             <TextField
+                onChange={handleChange}
                 id="standard-basic"
                 label="Topic"
                 style={{ width: 218 }}

@@ -179,6 +179,11 @@
     max-width: 840px;
 }
 
+.home-browseMore-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .imgCard-content {
     font-size: 18px;
 }

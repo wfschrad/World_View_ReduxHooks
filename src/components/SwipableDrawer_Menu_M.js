@@ -46,6 +46,7 @@ export default function SwipeableTemporaryDrawer() {
     const currCountry = useSelector((state) => state.currCountry);
     const currCategory = useSelector((state) => state.currCategory);
     const currKeyword = useSelector((state) => state.currKeyword);
+    const user = useSelector((state => state.user));
     const dispatch = useDispatch();
 
 
@@ -92,7 +93,6 @@ export default function SwipeableTemporaryDrawer() {
                 //       }
                 //     */
                 //   });
-                console.log('language en')
                 if (response.ok) {
                     const { articles } = await response.json();
                     // if (currCountry !== 'us') {
@@ -125,22 +125,40 @@ export default function SwipeableTemporaryDrawer() {
         ))} */}
             </List>
             <Divider />
+            <ListItem>
+                <h1 className={classes.listHeading}>Menu</h1>
+            </ListItem>
             <List>
-                <ListItem>
-                    <h1 className={classes.listHeading}>Custom Search</h1>
-                </ListItem>
-                <ListItem>
-                    <CountrySelect className={classes.listItemCustom} />
-                </ListItem>
-                <ListItem>
-                    <CategorySelect className={classes.listItem} />
-                </ListItem>
-                <ListItem>
+                {user ? (
+                    <>
+                        <ListItem>
+                            <a className='menu-button' href='/login'> Login </a>
+                        </ListItem>
+                        <Divider />
+
+                        <ListItem>
+                            <a className='menu-button' href='signup'>Signup </a>
+                        </ListItem>
+                    </>
+                ) : (
+                        <>
+                            <ListItem>
+                                <a className='menu-button' href='/login'> Login </a>
+                            </ListItem>
+                            <Divider />
+
+                            <ListItem>
+                                <a className='menu-button' href='signup'>Signup </a>
+                            </ListItem>
+                        </>
+                    )}
+
+                {/* <ListItem>
                     <KeywordSelect className={classes.listItem} />
                 </ListItem>
                 <ListItem>
                     <SearchButton onClick={handleSearch} />
-                </ListItem>
+                </ListItem> */}
                 {/* {['Country', 'Category', 'Topic'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon onClick={()=>console.log('clicked')}>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>

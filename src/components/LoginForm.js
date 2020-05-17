@@ -1,4 +1,6 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,7 +14,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Route, Redirect } from 'react-router-dom';
+import { setUser } from '../store/state';
+
 
 import { API } from '../config';
 
@@ -30,32 +34,7 @@ function Copyright() {
     );
 }
 
-const handleLogin = async (ev) => {
-    ev.preventDefault();
-    const formData = new FormData(document.getElementById('loginForm'));
-    const userEmail = formData.get('email');
-    const userPass = formData.get('password');
 
-    try {
-        const res = await fetch(`${API}users/login`, {
-            method: 'POST',
-            body: JSON.stringify({
-                email: userEmail,
-                password: userPass
-            }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        if (!res.ok) {
-            throw res;
-        }
-        const { token, user: { id } } = await res.json();
-        // storage access_token in localStorage:
-        localStorage.setItem('worldViewjtid_ACCESS_TOKEN', token);
-        localStorage.setItem('worldViewjtid_CURRENT_USER_ID', id);
-    } catch (e) { console.log(e); }
-}
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -79,6 +58,39 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
     const classes = useStyles();
+    const dispatch = useDispatch();
+
+    const handleLogin = async (ev) => {
+        ev.preventDefault();
+        const formData = new FormData(document.getElementById('loginForm'));
+        const userEmail = formData.get('email');
+        const userPass = formData.get('password');
+
+        try {
+            const res = await fetch(`${API}users/login`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    email: userEmail,
+                    password: userPass
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            if (!res.ok) {
+                throw res;
+            }
+            const { token, user: { id } } = await res.json();
+            // storage access_token in localStorage:
+            localStorage.setItem('worldViewjtid_ACCESS_TOKEN', token);
+            localStorage.setItem('worldViewjtid_CURRENT_USER_ID', id);
+            dispatch(setUser(id));
+            return <Route render={(props) => <Redirect to='/' />} />
+        } catch (e) { console.log(e); }
+    }
+
+    const user = useSelector((state) => state.user);
+    if (user) return <Redirect to='/' />
 
     return (
         <Container component="main" maxWidth="xs">

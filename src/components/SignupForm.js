@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,7 +13,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { useHistory } from 'react-router-dom'
+import { useHistory, Route, Redirect } from 'react-router-dom';
+import { setUser } from '../store/state';
 
 import { API } from '../config';
 
@@ -29,40 +31,7 @@ function Copyright() {
     );
 }
 
-const handleSignup = async (ev) => {
-    ev.preventDefault();
-    const formData = new FormData(document.getElementById('signupForm'));
-    const firstName = formData.get('firstName');
-    const userEmail = formData.get('email');
-    const userPass = formData.get('password');
 
-    //create user
-
-    try {
-        const res = await fetch(`${API}users/signup`, {
-            method: 'POST',
-            body: JSON.stringify({
-                firstName,
-                email: userEmail,
-                password: userPass
-            }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        if (!res.ok) throw res;
-
-        const { token, user: { id } } = await res.json();
-
-        // store jwt in local
-
-        localStorage.setItem('worldViewjtid_ACCESS_TOKEN', token);
-        localStorage.setItem('worldViewjtid_CURRENT_USER_ID', id);
-
-
-
-    } catch (e) { console.log(e); }
-}
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -85,7 +54,50 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignUp() {
+    const dispatch = useDispatch();
+
+
+    const handleSignup = async (ev) => {
+        ev.preventDefault();
+        const formData = new FormData(document.getElementById('signupForm'));
+        const firstName = formData.get('firstName');
+        const userEmail = formData.get('email');
+        const userPass = formData.get('password');
+
+        //create user
+
+        try {
+            const res = await fetch(`${API}users/signup`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    firstName,
+                    email: userEmail,
+                    password: userPass
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            if (!res.ok) throw res;
+
+            const { token, user: { id } } = await res.json();
+
+            // store jwt in local
+
+            localStorage.setItem('worldViewjtid_ACCESS_TOKEN', token);
+            localStorage.setItem('worldViewjtid_CURRENT_USER_ID', id);
+            dispatch(setUser(id))
+            return <Redirect to='/' />
+
+
+        } catch (e) { console.log(e); }
+    }
+
     const classes = useStyles();
+    let history = useHistory();
+    const user = useSelector((state) => state.user);
+    console.log('user in signup', user)
+    if (user) return <Redirect to='/' />
 
     return (
         <Container component="main" maxWidth="xs">

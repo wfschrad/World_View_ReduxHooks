@@ -24,6 +24,7 @@ const Home = () => {
     // let { articles } = useContext(UserContext);
     const currCountry = useSelector((state) => state.currCountry);
     const articles = useSelector((state) => state.articles);
+    const user = useSelector((state) => state.user);
     let history = useHistory();
     const dispatch = useDispatch();
 
@@ -79,17 +80,19 @@ const Home = () => {
                 {(articles && articles.length > 0) ? (
                     <div className='story-container'>
                         <HighlightArticle article={articles[0]} />
-                        <div className='subHighlight-ImgCardPane'>
-                            <ImgCard className='subHighlight-ImgCardPane__img' article={articles[2]} />
-                            <ImgCard className='subHighlight-ImgCardPane__img' article={articles[3]} />
-                            <ImgCard className='subHighlight-ImgCardPane__img' article={articles[4]} />
-                        </div>
-                        <button onClick={routeToResults} className='home-additional-articles-button'>BROWSE MORE</button>
+                        {(articles.length > 3) ? (
+                            <div className='subHighlight-ImgCardPane'>
+                                <ImgCard className='subHighlight-ImgCardPane__img' article={articles[1]} />
+                                <ImgCard className='subHighlight-ImgCardPane__img' article={articles[2]} />
+                                <ImgCard className='subHighlight-ImgCardPane__img' article={articles[3]} />
+                            </div>
+                        ) : null}
+                        <div className='home-browseMore-container'><button onClick={routeToResults} className='home-additional-articles-button'>BROWSE MORE</button></div>
                         {/* Above button should render new container component with list of horizontal
                         highlight cards. Evaluate use case for lazy-loading */}
                     </div>
                 ) : (
-                        <div>OH SNAP!</div>
+                        <div>No results for specified search...</div>
                     )
                 }
             </div>
