@@ -94,7 +94,7 @@
 
 .statusEl__result {
     margin-left: 4px;
-    text-decoration: underline;
+    /* text-decoration: underline; */
 }
 
 .status-bar__select {
@@ -233,4 +233,9 @@
 .results-container {
     display: grid;
     grid-template-columns: 15% 70% 15%;
+}
+
+.errors-container {
+    font-size: 18px;
+    padding:12px;
 }

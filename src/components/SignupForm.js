@@ -15,6 +15,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useHistory, Route, Redirect } from 'react-router-dom';
 import { setUser } from '../store/state';
+import { handleErrors } from "./utils";
 
 import { API } from '../config';
 
@@ -90,7 +91,10 @@ export default function SignUp() {
             return <Redirect to='/' />
 
 
-        } catch (e) { console.log(e); }
+        } catch (e) {
+            console.log(e);
+            handleErrors(e);
+        }
     }
 
     const classes = useStyles();
@@ -110,6 +114,7 @@ export default function SignUp() {
                     Join World View
         </Typography>
                 <form id="signupForm" className={classes.form} onSubmit={handleSignup}>
+                    <div className='errors-container'></div>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField

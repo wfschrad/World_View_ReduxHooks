@@ -16,6 +16,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useHistory, Route, Redirect } from 'react-router-dom';
 import { setUser } from '../store/state';
+import { handleErrors } from "./utils";
+
+
 
 
 import { API } from '../config';
@@ -86,7 +89,10 @@ export default function SignIn() {
             localStorage.setItem('worldViewjtid_CURRENT_USER_ID', id);
             dispatch(setUser(id));
             return <Route render={(props) => <Redirect to='/' />} />
-        } catch (e) { console.log(e); }
+        } catch (e) {
+            console.log(e);
+            handleErrors(e);
+        }
     }
 
     const user = useSelector((state) => state.user);
@@ -103,6 +109,7 @@ export default function SignIn() {
                     Sign in
         </Typography>
                 <form id="loginForm" className={classes.form} onSubmit={handleLogin}>
+                    <div className='errors-container'></div>
                     <TextField
                         variant="outlined"
                         margin="normal"

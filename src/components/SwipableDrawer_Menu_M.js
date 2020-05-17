@@ -47,6 +47,8 @@ export default function SwipeableTemporaryDrawer() {
     const currCategory = useSelector((state) => state.currCategory);
     const currKeyword = useSelector((state) => state.currKeyword);
     const user = useSelector((state => state.user));
+    console.log('user in swipe menu', user);
+
     const dispatch = useDispatch();
 
 
@@ -107,40 +109,32 @@ export default function SwipeableTemporaryDrawer() {
         }
     }
 
-    const list = (anchor) => (
-        <div
-            className={clsx(classes.list, {
-                [classes.fullList]: anchor === 'top' || anchor === 'bottom',
-            })}
-            role="presentation"
-        //   onClick={toggleDrawer(anchor, false)}
-        //   onKeyDown={toggleDrawer(anchor, false)}
-        >
-            <List>
-                {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+    const list = (anchor) => {
+        // const user = useSelector((state) => state.user);
+        console.log('user in list', user);
+        return (
+            <div
+                className={clsx(classes.list, {
+                    [classes.fullList]: anchor === 'top' || anchor === 'bottom',
+                })}
+                role="presentation"
+            //   onClick={toggleDrawer(anchor, false)}
+            //   onKeyDown={toggleDrawer(anchor, false)}
+            >
+                <List>
+                    {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))} */}
-            </List>
-            <Divider />
-            <ListItem>
-                <h1 className={classes.listHeading}>Menu</h1>
-            </ListItem>
-            <List>
-                {user ? (
-                    <>
-                        <ListItem>
-                            <a className='menu-button' href='/login'> Login </a>
-                        </ListItem>
-                        <Divider />
-
-                        <ListItem>
-                            <a className='menu-button' href='signup'>Signup </a>
-                        </ListItem>
-                    </>
-                ) : (
+                </List>
+                <Divider />
+                <ListItem>
+                    <h1 className={classes.listHeading}>Menu</h1>
+                </ListItem>
+                <List>
+                    {!user ? (
                         <>
                             <ListItem>
                                 <a className='menu-button' href='/login'> Login </a>
@@ -151,23 +145,35 @@ export default function SwipeableTemporaryDrawer() {
                                 <a className='menu-button' href='signup'>Signup </a>
                             </ListItem>
                         </>
-                    )}
+                    ) : (
+                            <>
+                                <ListItem>
+                                    <a className='menu-button' href='/saved'> Saved Stories </a>
+                                </ListItem>
+                                <Divider />
 
-                {/* <ListItem>
+                                <ListItem>
+                                    <a className='menu-button' href='logout'>Logout </a>
+                                </ListItem>
+                            </>
+                        )}
+
+                    {/* <ListItem>
                     <KeywordSelect className={classes.listItem} />
                 </ListItem>
                 <ListItem>
                     <SearchButton onClick={handleSearch} />
                 </ListItem> */}
-                {/* {['Country', 'Category', 'Topic'].map((text, index) => (
+                    {/* {['Country', 'Category', 'Topic'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon onClick={()=>console.log('clicked')}>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem> */}
-                {/* ))} */}
-            </List>
-        </div>
-    );
+                    {/* ))} */}
+                </List>
+            </div>
+        );
+    }
 
     return (
         <div>
