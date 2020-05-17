@@ -25,8 +25,9 @@
 }
 
 .nav-container__h1 {
+    font-family: cursive;
     color: white;
-    font-size: 1.5em;
+    font-size: 4em;
     font-weight: 900;
     align-self: center;
 }
@@ -41,9 +42,12 @@
     display: flex;
     margin-left: 40px;
     align-self: center;
+    margin-right: 20px;
 }
 
 .nav-container__right {
+    display: flex;
+    margin-left: 20px;
     align-self: center;
     margin-right: 40px;
 }
@@ -75,7 +79,8 @@
     grid-template-columns: 10% 80% 10%;
     display: flex;
     justify-content: space-between;
-    background-color: rgb(75,75,75);
+    /* background-color: rgb(75,75,75); */
+    background-color: gray;
     color: white;
     font-weight: 900;
     padding: 10px;

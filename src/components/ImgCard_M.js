@@ -12,6 +12,8 @@ const useStyles = makeStyles({
     root: {
         maxWidth: 267,
         transition: '.5s',
+        borderBottom: "1px solid gray",
+        borderRight: "1px solid gray",
         '&:hover': {
             boxShadow: "7px 7px 5px 0px rgba(50, 50, 50, 0.5)",
             transform: "translate(2px, -8px)"

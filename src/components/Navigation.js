@@ -8,6 +8,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/HomeOutlined';
 import { withTheme } from '@material-ui/core';
 import Swipable from './SwipableDrawer_M';
+import SwipableMenu from './SwipableDrawer_Menu_M'
 
 import { setDrawerer } from '../store/state';
 import logo from './logo.jpg'
@@ -45,12 +46,12 @@ const Navigation = () => {
         {/* <NavCrumbs style={{fontSize: 30, color: "white", marginLeft: "20px"}}/> */}
       </span>
       <span className='nav-container__center'>
-        {/* <h1 className='nav-container__h1'>World View</h1> */}
-        <div className='logo-container'><img className='logo' src={logo} /></div>
+        <div className='nav-container__h1'>World View</div>
+        {/* <div className='logo-container'><img className='logo' src={logo} /></div> */}
         {/* <span className='nav-container__center__country'>{`Current Country: ${currCountry.toUpperCase()}`}</span> */}
       </span>
       <span className='nav-container__right'>
-        <MenuIcon />
+        <SwipableMenu />
         <HomeIcon onClick={homeClick} style={{ fontSize: 30, marginLeft: '10px' }} />
 
       </span>

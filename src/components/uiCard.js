@@ -19,7 +19,9 @@ const useStyles = makeStyles((theme) => ({
         maxHeight: '220px',
         marginBottom: '20px',
         boxSizing: 'border-box',
-        // border: "4px solid gray",
+        // border: "1px solid gray",
+        borderBottom: "1px solid gray",
+        borderRight: "1px solid gray",
         transition: '.5s',
         '&:hover': {
             boxShadow: "7px 7px 5px 0px rgba(50, 50, 50, 0.5)",

@@ -21,8 +21,7 @@ import CountrySelect from './CountrySelect';
 import CategorySelect from './CategorySelect';
 import { newsUrlTopCountry, apiKEY } from '../config';
 import { setArticles } from '../store/state';
-
-
+import KeywordSelect from './KeywordSelect';
 
 const useStyles = makeStyles({
   list: {
@@ -137,7 +136,7 @@ export default function SwipeableTemporaryDrawer() {
           <CategorySelect className={classes.listItem} />
         </ListItem>
         <ListItem>
-          <CategorySelect className={classes.listItem} />
+          <KeywordSelect className={classes.listItem} />
         </ListItem>
         <ListItem>
           <SearchButton onClick={handleSearch} />
