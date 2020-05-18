@@ -36,7 +36,12 @@ const useStyles = makeStyles({
     listHeading: {
         color: 'black',
         fontWeight: '600',
-        marginBotton: '20px'
+        // marginBottom: '20px'
+    },
+    menuLink: {
+        color: "gray",
+        textDecoration: "none",
+        marginTop: "20px"
     }
 });
 

@@ -61,6 +61,13 @@
     margin-left: 10px;
 }
 
+.menu-button {
+    color: gray;
+    text-decoration: none;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
 .demo-button {
     margin-right: 10px;
     border-radius: 25%;
