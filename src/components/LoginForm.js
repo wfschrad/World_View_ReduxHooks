@@ -18,9 +18,6 @@ import { useHistory, Route, Redirect } from 'react-router-dom';
 import { setUser } from '../store/state';
 import { handleErrors } from "./utils";
 
-
-
-
 import { API } from '../config';
 
 

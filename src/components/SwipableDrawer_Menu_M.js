@@ -148,7 +148,7 @@ export default function SwipeableTemporaryDrawer() {
                     ) : (
                             <>
                                 <ListItem>
-                                    <a className='menu-button' href='/saved'> Saved Stories </a>
+                                    <a className='menu-button' href='/savedStories'> Saved Stories </a>
                                 </ListItem>
                                 <Divider />
 

@@ -53,7 +53,7 @@ export default function ImgMediaCard({ article }) {
                 <Button size="small" color="primary">
                     Save
         </Button>
-                <Button size="small" color="primary">
+                <Button onClick={() => window.open(article.url)} size="small" color="primary">
                     Full Story
         </Button>
             </CardActions>

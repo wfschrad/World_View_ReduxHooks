@@ -35,6 +35,7 @@ const Home = () => {
     useEffect(() => {
         (async () => {
             const storedArticles = localStorage.getItem(`worldViewArticles-layoutDev-${currCountry}`);
+            // const timeStamp = localStorage.get
             if (storedArticles && storedArticles !== 'undefined') {
                 console.log('stored in...', storedArticles);
                 const parsedArticles = JSON.parse(storedArticles);
@@ -70,8 +71,6 @@ const Home = () => {
                 } catch (e) { console.log(e); }
             }
         })();
-        if (articles) console.log('articles in Home', articles);
-
     }, []);
     return (
         <div className='home-container'>

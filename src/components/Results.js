@@ -17,7 +17,6 @@ const Results = () => {
                 {articles.map((article, idx) => (
                     <HighlightArticle key={idx} article={article} />
                 ))}
-
             </div>
         </div>
     )

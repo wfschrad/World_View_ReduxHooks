@@ -51,25 +51,25 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function MediaControlCard({ article }) {
+export default function MediaControlCard({ article: { NewsStory } }) {
     const classes = useStyles();
     const theme = useTheme();
 
     return (
-        <Card className={classes.root} onClick={() => window.open(article.url)}>
+        <Card className={classes.root} onClick={() => window.open(NewsStory.url)}>
             <div className={classes.details}>
                 <CardContent className={classes.content}>
                     <Typography component="h5" variant="h5">
-                        {`${article.title.slice(0, 75)}...`}
+                        {`${NewsStory.title.slice(0, 75)}...`}
                     </Typography>
                     <Typography variant="subtitle1" color="textSecondary">
-                        {article.content ? article.content.slice(0, 260) :
-                            article.description ? article.description.slice(0, 260) : <span>Read Article</span>}
+                        {NewsStory.content ? NewsStory.content.slice(0, 260) :
+                            NewsStory.description ? NewsStory.description.slice(0, 260) : <span>Read NewsStory</span>}
                         <span className='uiButtons'>
                             <Button size="small" color="primary">
                                 Save
         </Button>
-                            <Button onClick={() => window.open(article.url)} size="small" color="primary">
+                            <Button onClick={() => window.open(NewsStory.url)} size="small" color="primary">
                                 Full Story
         </Button>
                         </span>
@@ -78,8 +78,8 @@ export default function MediaControlCard({ article }) {
             </div>
             <CardMedia
                 className={classes.cover}
-                image={article.urlToImage}
-                title={article.title}
+                image={NewsStory.urlImg}
+                title={NewsStory.title}
             />
         </Card>
     );

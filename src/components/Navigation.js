@@ -1,8 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
-
+import { useHistory, Route, Redirect } from 'react-router-dom';
 
 import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/HomeOutlined';
@@ -11,7 +10,10 @@ import Swipable from './SwipableDrawer_M';
 import SwipableMenu from './SwipableDrawer_Menu_M'
 
 import { setDrawerer } from '../store/state';
-import logo from './logo.jpg'
+import { setUser } from '../store/state';
+import { handleErrors } from "./utils";
+import { API } from '../config';
+
 
 
 const Navigation = () => {
@@ -26,6 +28,33 @@ const Navigation = () => {
   const homeClick = () => history.push('/');
 
   const menuClick = () => dispatch(setDrawerer(!drawererIsOpen));
+
+  const demoLogin = async () => {
+    try {
+      const res = await fetch(`${API}users/login`, {
+        method: 'POST',
+        body: JSON.stringify({
+          email: 'demo@gmail.com',
+          password: 'demo'
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      if (!res.ok) {
+        throw res;
+      }
+      const { token, user: { id } } = await res.json();
+      // storage access_token in localStorage:
+      localStorage.setItem('worldViewjtid_ACCESS_TOKEN', token);
+      localStorage.setItem('worldViewjtid_CURRENT_USER_ID', id);
+      dispatch(setUser(id));
+      return <Route render={(props) => <Redirect to='/' />} />
+    } catch (e) {
+      console.log(e);
+      handleErrors(e);
+    }
+  }
 
   return (
     <div className='nav-container'>
@@ -51,8 +80,9 @@ const Navigation = () => {
         {/* <span className='nav-container__center__country'>{`Current Country: ${currCountry.toUpperCase()}`}</span> */}
       </span>
       <span className='nav-container__right'>
-        <SwipableMenu />
+        {!user ? <button className='demo-button' onClick={demoLogin}>Demo</button> : null}
         <HomeIcon onClick={homeClick} style={{ fontSize: 30, marginLeft: '10px' }} />
+        <SwipableMenu />
 
       </span>
     </div>

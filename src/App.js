@@ -17,6 +17,7 @@ import Swipable from './components/SwipableDrawer_M';
 import { AuthRoute, ProtectedRoute } from './components/utilRoutes';
 import { setUser } from './store/state';
 import Logout from './components/Logout';
+import SavedStories from './components/SavedStories';
 
 
 const App = () => {
@@ -34,6 +35,7 @@ const App = () => {
         <Route path='/showAll' component={Results} />
         <Route path='/logout' component={Logout} />
         <Route exact path='/' component={Home} />
+        <Route path='/savedStories' component={SavedStories} />
       </Switch>
     </BrowserRouter>
   );
