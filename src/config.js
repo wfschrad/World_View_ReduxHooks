@@ -1,6 +1,6 @@
 const production = process.env.NODE_ENV === "production";
 
-export const newsUrl = `http://newsapi.org/v2/everything?q=bitcoin&from=2020-04-30&sortBy=publishedAt&apiKey=78bf6a2d1a574d3995099f73fb8f6cd3`
+export const newsUrl = `https://newsapi.org/v2/everything?q=bitcoin&from=2020-04-30&sortBy=publishedAt&apiKey=78bf6a2d1a574d3995099f73fb8f6cd3`
 export const API = production ? `https://rocky-inlet-52998.herokuapp.com/` : `http://localhost:8080/`
 export const newsUrlBase = `https://newsapi.org/v2/`
 export const newsUrlSourceList = `https://newsapi.org/v2/sources`
