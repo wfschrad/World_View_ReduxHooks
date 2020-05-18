@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -35,6 +35,7 @@ export default function ImgMediaCard({ article }) {
     const classes = useStyles();
     console.log('article:', article)
     const user = useSelector((state) => state.user);
+    const history = useHistory();
 
     const body = JSON.stringify({
         url: article.url,
@@ -48,7 +49,8 @@ export default function ImgMediaCard({ article }) {
     console.log('body', body);
 
     const handleSaveClick = async () => {
-        if (!user) return <Redirect to='/' />;
+        if (!user) history.push('/login');
+
         const res = await fetch(`${API}stories/`, {
             method: 'POST',
             body: JSON.stringify({
@@ -78,6 +80,7 @@ export default function ImgMediaCard({ article }) {
             }
         });
         const { savedStory } = await savedRes.json();
+        window.alert('Story Saved!')
         // if (!res.ok) throw res;
     }
 

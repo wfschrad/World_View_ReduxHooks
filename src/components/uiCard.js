@@ -1,5 +1,7 @@
 
 import React from 'react';
+import { Redirect, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -9,6 +11,8 @@ import Typography from '@material-ui/core/Typography';
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
+
+import { API } from '../config';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -54,19 +58,58 @@ const useStyles = makeStyles((theme) => ({
 export default function MediaControlCard({ article }) {
     const classes = useStyles();
     const theme = useTheme();
+    const user = useSelector((state) => state.user);
+    const history = useHistory();
+
+    const handleSaveClick = async (ev) => {
+        ev.stopPropagation();
+        if (!user) history.push('/login');
+
+        const res = await fetch(`${API}stories/`, {
+            method: 'POST',
+            body: JSON.stringify({
+                url: article.url,
+                urlImg: article.urlToImage,
+                title: article.title,
+                description: article.description,
+                content: article.content,
+                upVoteCount: 0,
+                downVoteCount: 0
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        console.log('res', res)
+        const { story } = await res.json();
+        console.log('story', story);
+        const savedRes = await fetch(`${API}stories/saveStory`, {
+            method: 'POST',
+            body: JSON.stringify({
+                userId: user,
+                storyId: story[0].id
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const { savedStory } = await savedRes.json();
+        window.alert('Story Saved!')
+        // if (!res.ok) throw res;
+    }
 
     return (
-        <Card className={classes.root} onClick={() => window.open(article.url)}>
-            <div className={classes.details}>
+        <Card className={classes.root} >
+            <div onClick={() => window.open(article.url)} className={classes.details}>
                 <CardContent className={classes.content}>
                     <Typography component="h5" variant="h5">
-                        {`${article.title.slice(0, 75)}...`}
+                        {article.title ? `${article.title.slice(0, 75)}...` : null}
                     </Typography>
                     <Typography variant="subtitle1" color="textSecondary">
                         {article.content ? article.content.slice(0, 260) :
                             article.description ? article.description.slice(0, 260) : <span>Read Article</span>}
                         <span className='uiButtons'>
-                            <Button size="small" color="primary">
+                            <Button onClick={handleSaveClick} size="small" color="primary">
                                 Save
         </Button>
                             <Button onClick={() => window.open(article.url)} size="small" color="primary">

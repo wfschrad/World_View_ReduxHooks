@@ -12,12 +12,16 @@ const Results = () => {
     if (articles.length === 0) history.push('/');
     return (
         <div className='results-container'>
-            <div className='results-container__left'></div>
-            <div className='results-container__main'>
-                {articles.map((article, idx) => (
-                    <HighlightArticle key={idx} article={article} />
-                ))}
-            </div>
+            {articles ? (
+                <>
+                    <div className='results-container__left'></div>
+                    <div className='results-container__main'>
+                        {articles.map((article, idx) => (
+                            <HighlightArticle key={idx} article={article} />
+                        ))}
+                    </div>
+                </>
+            ) : null}
         </div>
     )
 }

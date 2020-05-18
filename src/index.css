@@ -274,10 +274,25 @@
 .saved-heading {
     padding-bottom: 20px;
     padding-left: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-left: 60px;
+    font-weight: 600;
+    /* background-color: gray; */
+    color: gray;
+}
+
+.saved-container {
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
 }
 
 .errors-container {
     font-size: 18px;
     padding:12px;
 }
+    .no-results {
+        font-weight: 600;
+        color: gray;
+        font-size: 36px;
+    }

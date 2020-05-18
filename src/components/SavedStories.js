@@ -30,9 +30,12 @@ const SavedStories = () => {
             <h1 className='saved-heading'>--- Saved Stories---</h1>
             {(savedArticles && savedArticles.length > 0) ? (
                 <div className='saved-container'>
-                    {savedArticles.map((article, idx) => (
-                        <HighlightArticleSaved key={idx} article={article} />
-                    ))}
+                    <div className='saved-container__left'></div>
+                    <div className='saved-container__main'>
+                        {savedArticles.map((article, idx) => (
+                            <HighlightArticleSaved key={idx} article={article} />
+                        ))}
+                    </div>
                 </div>
             ) : <div>No data</div>}
         </>

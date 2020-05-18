@@ -82,7 +82,7 @@ const Navigation = () => {
       <span className='nav-container__right'>
         {!user ? <button className='demo-button' onClick={demoLogin}>Demo</button> : null}
         <HomeIcon onClick={homeClick} style={{ fontSize: 30, marginLeft: '10px' }} />
-        <SwipableMenu />
+        <SwipableMenu style={{ marginLeft: '30px' }} />
 
       </span>
     </div>

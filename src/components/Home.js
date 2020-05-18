@@ -91,7 +91,7 @@ const Home = () => {
                         highlight cards. Evaluate use case for lazy-loading */}
                     </div>
                 ) : (
-                        <div>No results for specified search...</div>
+                        <div className='no-results'>No results for specified search...</div>
                     )
                 }
             </div>
