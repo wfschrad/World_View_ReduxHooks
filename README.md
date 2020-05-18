@@ -51,7 +51,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/co
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-### Advanced Configuration
+### Advanced Configuration.
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration.
 
