@@ -1,16 +1,42 @@
 import React, { Component, useEffect } from 'react'
 import { newsUrlTopCountry, apiKEY } from '../config';
 import { useSelector, useDispatch } from 'react-redux';
+import { setArticles } from '../store/state';
+
+import HighlightArticle from './uiCard';
+import ImgCard from './ImgCard_M';
 
 
 export default function ApolloHome() {
     const currCountry = useSelector((state) => state.currCountry);
+    const articles = useSelector((state) => state.articles);
+
+    const dispatch = useDispatch();
+
+    const buildQueryString = () => {
+
+        let qs = `${newsUrlTopCountry}${currCountry}&apiKey=${apiKEY}`
+
+        // if (currCategory !== 'none') {
+        //   qs += `category=${currCategory}&`;
+        // }
+
+        // if (currKeyword !== 'none') {
+        //   qs += `q=${currKeyword}&`;
+        // }
+
+        // qs += `apiKey=${apiKEY}`;
+        // console.log('query string: ', qs)
+        return qs;
+    }
 
     const fetchArticles = () => {
         (async () => {
             debugger;
-            const res = await fetch(`${newsUrlTopCountry}${currCountry}&apiKey=${apiKEY}`);
+            const qs = buildQueryString();
+            const res = await fetch(qs);
             const { articles } = await res.json();
+            dispatch(setArticles(articles));
             debugger;
             console.log('articles', articles)
             console.log('curr', currCountry)
@@ -19,8 +45,28 @@ export default function ApolloHome() {
 
     useEffect(fetchArticles, []);
     return (
-        <div>
-            Hello, Apollo
+        <div className='home-container'>
+            <div className='home-main__left'></div>
+            <div className='home-main__center'>
+                {(articles && articles.length > 0) ? (
+                    <div className='story-container'>
+                        <HighlightArticle article={articles[0]} />
+                        {(articles.length > 3) ? (
+                            <div className='subHighlight-ImgCardPane'>
+                                <ImgCard className='subHighlight-ImgCardPane__img' article={articles[1]} />
+                                <ImgCard className='subHighlight-ImgCardPane__img' article={articles[2]} />
+                                <ImgCard className='subHighlight-ImgCardPane__img' article={articles[3]} />
+                            </div>
+                        ) : null}
+                        {/* <div className='home-browseMore-container'><button onClick={routeToResults} className='home-additional-articles-button'>BROWSE MORE</button></div> */}
+                        {/* Above button should render new container component with list of horizontal
+                        highlight cards. Evaluate use case for lazy-loading */}
+                    </div>
+                ) : (
+                        <div className='no-results'>No results for specified search...</div>
+                    )
+                }
+            </div>
         </div>
     )
 }
