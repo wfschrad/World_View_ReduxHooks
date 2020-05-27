@@ -9,7 +9,6 @@ import SignupForm from './components/SignupForm';
 import ImgCard from './components/ImgCard_M';
 import ImgCardHorizontal from './components/ImgCardHorizontal_M';
 import Modal from './components/Modal_M';
-import SearchForm from './components/SearchForm';
 import Home from './components/Home';
 import StatusBar from './components/StatusBar';
 import Results from './components/Results';
@@ -18,6 +17,8 @@ import { AuthRoute, ProtectedRoute } from './components/utilRoutes';
 import { setUser } from './store/state';
 import LogoutUser from './components/LogoutUser';
 import SavedStories from './components/SavedStories';
+
+import ApolloHome from './components/ApolloHome';
 
 
 const App = () => {
@@ -34,6 +35,7 @@ const App = () => {
         <AuthRoute path='/signup' component={SignupForm} currentUserId={currentUserId} />
         <Route path='/showAll' component={Results} />
         <Route path='/logout' component={LogoutUser} />
+        <Route path='/apollo' component={ApolloHome} />
         <Route exact path='/' component={Home} />
         <Route path='/savedStories' component={SavedStories} />
       </Switch>

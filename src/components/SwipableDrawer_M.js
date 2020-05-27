@@ -70,41 +70,41 @@ export default function SwipeableTemporaryDrawer() {
 
   const handleSearch = async () => {
     console.log('search button clicked')
-    const storedArticles = localStorage.getItem(`worldViewArticles-layoutDev-${currCountry}`);
-    if (storedArticles && storedArticles !== 'undefined') {
-      console.log('stored in...', storedArticles);
-      const parsedArticles = JSON.parse(storedArticles);
-      dispatch(setArticles(parsedArticles));
-    } else {
-      try {
-        const response = await fetch(`${newsUrlTopCountry}${currCountry}&apiKey=${apiKEY}`);
-        // newsapi.v2.topHeadlines({
-        //     q: 'bitcoin',
-        //     category: 'business',
-        //     language: 'en',
-        //     country: 'us'
-        //   }).then(response => {
-        //     console.log(response);
-        //     /*
-        //       {
-        //         status: "ok",
-        //         articles: [...]
-        //       }
-        //     */
-        //   });
-        console.log('language en')
-        if (response.ok) {
-          const { articles } = await response.json();
-          // if (currCountry !== 'us') {
-          //     const testArticle = await translate(articles[0].title, 'en');
-          //     console.log('test article', testArticle)
-          // }
-          console.log('articles 64', articles)
-          dispatch(setArticles(articles));
-          localStorage.setItem(`worldViewArticles-layoutDev-${currCountry}`, JSON.stringify(articles));
-        }
-      } catch (e) { console.log(e); }
-    }
+    // const storedArticles = localStorage.getItem(`worldViewArticles-${qs}`);
+    // if (storedArticles && storedArticles !== 'undefined') {
+    //   console.log('stored in...', storedArticles);
+    //   const parsedArticles = JSON.parse(storedArticles);
+    //   dispatch(setArticles(parsedArticles));
+    // } else {
+    try {
+      const response = await fetch(`${newsUrlTopCountry}${currCountry}&apiKey=${apiKEY}`);
+      // newsapi.v2.topHeadlines({
+      //     q: 'bitcoin',
+      //     category: 'business',
+      //     language: 'en',
+      //     country: 'us'
+      //   }).then(response => {
+      //     console.log(response);
+      //     /*
+      //       {
+      //         status: "ok",
+      //         articles: [...]
+      //       }
+      //     */
+      //   });
+      console.log('language en')
+      if (response.ok) {
+        const { articles } = await response.json();
+        // if (currCountry !== 'us') {
+        //     const testArticle = await translate(articles[0].title, 'en');
+        //     console.log('test article', testArticle)
+        // }
+        console.log('articles 64', articles)
+        dispatch(setArticles(articles));
+        // localStorage.setItem(`worldViewArticles-${qs}`, JSON.stringify(articles));
+      }
+    } catch (e) { console.log(e); }
+    // }
   }
 
   const list = (anchor) => (

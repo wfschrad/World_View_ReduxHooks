@@ -93,6 +93,7 @@ export default function IconLabelButtons() {
           localStorage.setItem(`worldViewArticles-${qs}`, JSON.stringify(articles));
           // history.push('/');
         }
+        else { throw Error('Error fetching') }
       }
     } catch (e) { console.log(e); }
     // }

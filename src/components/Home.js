@@ -41,8 +41,10 @@ const Home = () => {
                 const parsedArticles = JSON.parse(storedArticles);
                 dispatch(setArticles(parsedArticles));
             } else {
+                let response;
                 try {
-                    const response = await fetch(`${newsUrlTopCountry}${currCountry}&apiKey=${apiKEY}`);
+                    console.log('before home fetch')
+                    response = await fetch(`https://newsapi.org/v2/top-headlines?country=ca&apiKey=78bf6a2d1a574d3995099f73fb8f6cd3`);
                     // newsapi.v2.topHeadlines({
                     //     q: 'bitcoin',
                     //     category: 'business',
@@ -57,7 +59,7 @@ const Home = () => {
                     //       }
                     //     */
                     //   });
-                    console.log('language en')
+                    console.log('after home fetch')
                     if (response.ok) {
                         const { articles } = await response.json();
                         // if (currCountry !== 'us') {
@@ -68,7 +70,10 @@ const Home = () => {
                         dispatch(setArticles(articles));
                         localStorage.setItem(`worldViewArticles-layoutDev-${currCountry}`, JSON.stringify(articles));
                     }
-                } catch (e) { console.log(e); }
+                } catch (e) {
+                    console.log('res in catch:', response)
+                    console.error(e.message);
+                }
             }
         })();
     }, []);
