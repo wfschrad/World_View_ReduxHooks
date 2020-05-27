@@ -9,6 +9,8 @@ import ImgCard from './ImgCard_M';
 
 export default function ApolloHome() {
     const currCountry = useSelector((state) => state.currCountry);
+    const currCategory = useSelector((state) => state.currCategory);
+    const currKeyword = useSelector((state) => state.currKeyword);
     const articles = useSelector((state) => state.articles);
 
     const dispatch = useDispatch();
@@ -40,6 +42,9 @@ export default function ApolloHome() {
             debugger;
             console.log('articles', articles)
             console.log('curr', currCountry)
+            console.log('currC', currCategory)
+            console.log('currK', currKeyword)
+
         })()
     }
 
