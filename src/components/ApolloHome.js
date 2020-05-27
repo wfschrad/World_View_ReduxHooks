@@ -1,6 +1,8 @@
 import React, { Component, useEffect } from 'react'
 import { newsUrlTopCountry, apiKEY } from '../config';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+
 import { setArticles } from '../store/state';
 
 import HighlightArticle from './uiCard';
@@ -14,6 +16,7 @@ export default function ApolloHome() {
     const articles = useSelector((state) => state.articles);
 
     const dispatch = useDispatch();
+    let history = useHistory();
 
     const buildQueryString = () => {
 
@@ -48,6 +51,10 @@ export default function ApolloHome() {
         })()
     }
 
+    const routeToResults = () => {
+        history.push('/showAll')
+    }
+
     useEffect(fetchArticles, []);
     return (
         <div className='home-container'>
@@ -63,7 +70,7 @@ export default function ApolloHome() {
                                 <ImgCard className='subHighlight-ImgCardPane__img' article={articles[3]} />
                             </div>
                         ) : null}
-                        {/* <div className='home-browseMore-container'><button onClick={routeToResults} className='home-additional-articles-button'>BROWSE MORE</button></div> */}
+                        <div className='home-browseMore-container'><button onClick={routeToResults} className='home-additional-articles-button'>BROWSE MORE</button></div>
                         {/* Above button should render new container component with list of horizontal
                         highlight cards. Evaluate use case for lazy-loading */}
                     </div>

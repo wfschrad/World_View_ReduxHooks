@@ -36,7 +36,7 @@ const App = () => {
         <Route path='/showAll' component={Results} />
         <Route path='/logout' component={LogoutUser} />
         <Route path='/apollo' component={ApolloHome} />
-        <Route exact path='/' component={Home} />
+        <Route exact path='/' component={ApolloHome} />
         <Route path='/savedStories' component={SavedStories} />
       </Switch>
     </BrowserRouter>
