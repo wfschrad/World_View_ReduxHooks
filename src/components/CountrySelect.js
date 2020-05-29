@@ -11,17 +11,19 @@ import { newsCountries } from '../global';
 import { setCurrCountry } from '../store/state';
 
 export default function ComboBox() {
-    const currCountry = useSelector((state) => state.currCountry);
+  const currCountry = useSelector((state) => state.currCountry);
 
-    const dispatch = useDispatch();
-    let history = useHistory();
+  const dispatch = useDispatch();
+  let history = useHistory();
 
-    const handleChange = (ev, newVal) => {
-        dispatch(setCurrCountry(newsCountries[newVal]));
-        // history.push('/');
-        console.log('newVal', newVal)
+  const handleChange = (ev, newVal) => {
+    if (newVal) {
+      dispatch(setCurrCountry(newsCountries[newVal]));
+      // history.push('/');
+      console.log('newVal', newVal)
     }
-    return (
+  }
+  return (
     <Autocomplete
       id="combo-box-demo"
       options={Object.keys(newsCountries)}
