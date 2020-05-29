@@ -1,9 +1,10 @@
-import React, { Component, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { newsUrlTopCountry, apiKEY } from '../config';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { setArticles } from '../store/state';
+// import { fetchArticles } from '../global'
 
 import HighlightArticle from './uiCard';
 import ImgCard from './ImgCard_M';

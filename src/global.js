@@ -4,6 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setArticles } from './store/state';
 
 // const currCountry = useSelector((state) => state.currCountry);
+// const currCategory = useSelector((state) => state.currCategory);
+// const currKeyword = useSelector((state) => state.currKeyword);
+
 
 // const dispatch = useDispatch();
 
@@ -84,6 +87,39 @@ export const engCountries = {
     "United Kingdowm": 'gb',
     "United States": 'us',
 }
+
+// const buildQueryString = () => {
+
+//     let qs = `${newsUrlTopCountry}${currCountry}&apiKey=${apiKEY}`
+
+//     // if (currCategory !== 'none') {
+//     //   qs += `category=${currCategory}&`;
+//     // }
+
+//     // if (currKeyword !== 'none') {
+//     //   qs += `q=${currKeyword}&`;
+//     // }
+
+//     // qs += `apiKey=${apiKEY}`;
+//     // console.log('query string: ', qs)
+//     return qs;
+// }
+
+// export const fetchArticles = () => {
+//     (async () => {
+//         debugger;
+//         const qs = buildQueryString();
+//         const res = await fetch(qs);
+//         const { articles } = await res.json();
+//         dispatch(setArticles(articles));
+//         debugger;
+//         console.log('articles', articles)
+//         console.log('curr', currCountry)
+//         console.log('currC', currCategory)
+//         console.log('currK', currKeyword)
+
+//     })()
+// }
 
 
 
