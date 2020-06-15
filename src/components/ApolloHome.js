@@ -38,12 +38,12 @@ export default function ApolloHome() {
 
     const fetchArticles = () => {
         (async () => {
-            debugger;
+            // debugger;
             const qs = buildQueryString();
             const res = await fetch(qs);
             const { articles } = await res.json();
             dispatch(setArticles(articles));
-            debugger;
+            // debugger;
             console.log('articles', articles)
             console.log('curr', currCountry)
             console.log('currC', currCategory)

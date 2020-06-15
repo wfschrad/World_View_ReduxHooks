@@ -34,46 +34,46 @@ const Home = () => {
 
     useEffect(() => {
         (async () => {
-            const storedArticles = localStorage.getItem(`worldViewArticles-layoutDev-${currCountry}`);
+            // const storedArticles = localStorage.getItem(`worldViewArticles-layoutDev-${currCountry}`);
+
             // const timeStamp = localStorage.get
-            if (storedArticles && storedArticles !== 'undefined') {
-                console.log('stored in...', storedArticles);
-                const parsedArticles = JSON.parse(storedArticles);
-                dispatch(setArticles(parsedArticles));
-            } else {
-                let response;
-                try {
-                    console.log('before home fetch')
-                    response = await fetch(`https://newsapi.org/v2/top-headlines?country=ca&apiKey=78bf6a2d1a574d3995099f73fb8f6cd3`);
-                    // newsapi.v2.topHeadlines({
-                    //     q: 'bitcoin',
-                    //     category: 'business',
-                    //     language: 'en',
-                    //     country: 'us'
-                    //   }).then(response => {
-                    //     console.log(response);
-                    //     /*
-                    //       {
-                    //         status: "ok",
-                    //         articles: [...]
-                    //       }
-                    //     */
-                    //   });
-                    console.log('after home fetch')
-                    if (response.ok) {
-                        const { articles } = await response.json();
-                        // if (currCountry !== 'us') {
-                        //     const testArticle = await translate(articles[0].title, 'en');
-                        //     console.log('test article', testArticle)
-                        // }
-                        console.log('articles 64', articles)
-                        dispatch(setArticles(articles));
-                        localStorage.setItem(`worldViewArticles-layoutDev-${currCountry}`, JSON.stringify(articles));
-                    }
-                } catch (e) {
-                    console.log('res in catch:', response)
-                    console.error(e.message);
+            // if (storedArticles && storedArticles !== 'undefined') {
+            //     console.log('stored in...', storedArticles);
+            //     const parsedArticles = JSON.parse(storedArticles);
+            //     dispatch(setArticles(parsedArticles));
+            // } else {
+            let response;
+            try {
+                console.log('before home fetch')
+                response = await fetch(`https://newsapi.org/v2/top-headlines?country=ca&apiKey=78bf6a2d1a574d3995099f73fb8f6cd3`);
+                // newsapi.v2.topHeadlines({
+                //     q: 'bitcoin',
+                //     category: 'business',
+                //     language: 'en',
+                //     country: 'us'
+                //   }).then(response => {
+                //     console.log(response);
+                //     /*
+                //       {
+                //         status: "ok",
+                //         articles: [...]
+                //       }
+                //     */
+                //   });
+                console.log('after home fetch')
+                if (response.ok) {
+                    const { articles } = await response.json();
+                    // if (currCountry !== 'us') {
+                    //     const testArticle = await translate(articles[0].title, 'en');
+                    //     console.log('test article', testArticle)
+                    // }
+                    console.log('articles 64', articles)
+                    dispatch(setArticles(articles));
+                    localStorage.setItem(`worldViewArticles-layoutDev-${currCountry}`, JSON.stringify(articles));
                 }
+            } catch (e) {
+                console.log('res in catch:', response)
+                console.error(e.message);
             }
         })();
     }, []);

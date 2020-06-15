@@ -97,7 +97,7 @@ export default function MediaControlCard({ article }) {
         window.alert('Story Saved!')
         // if (!res.ok) throw res;
     }
-
+    // debugger
     return (
         <Card className={classes.root} >
             <div onClick={() => window.open(article.url)} className={classes.details}>
@@ -121,7 +121,7 @@ export default function MediaControlCard({ article }) {
             </div>
             <CardMedia
                 className={classes.cover}
-                image={article.urlToImage}
+                image='/static/images/cards/live-from-space.jpg'
                 title={article.title}
             />
         </Card>

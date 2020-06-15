@@ -45,7 +45,7 @@ const Navigation = () => {
         throw res;
       }
       const { token, user: { id } } = await res.json();
-      // storage access_token in localStorage:
+      // store access_token in localStorage:
       localStorage.setItem('worldViewjtid_ACCESS_TOKEN', token);
       localStorage.setItem('worldViewjtid_CURRENT_USER_ID', id);
       dispatch(setUser(id));
