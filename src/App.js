@@ -35,7 +35,6 @@ const App = () => {
         <AuthRoute path='/signup' component={SignupForm} currentUserId={currentUserId} />
         <Route path='/showAll' component={Results} />
         <Route path='/logout' component={LogoutUser} />
-        <Route path='/apollo' component={ApolloHome} />
         <Route exact path='/' component={ApolloHome} />
         <Route path='/savedStories' component={SavedStories} />
       </Switch>

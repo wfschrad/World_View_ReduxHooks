@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
-import { newsUrlTopCountry, apiKEY } from '../config';
+import { API } from '../config';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import Axios from 'axios';
 
 import { setArticles } from '../store/state';
 // import { fetchArticles } from '../global'
@@ -16,12 +17,20 @@ export default function ApolloHome() {
     const currKeyword = useSelector((state) => state.currKeyword);
     const articles = useSelector((state) => state.articles);
 
+    // normalize data if needed
+
+    let normalizedData = {
+        currCountry,
+        currCategory,
+        currKeyword
+    }
+
     const dispatch = useDispatch();
     let history = useHistory();
 
     const buildQueryString = () => {
 
-        let qs = `${newsUrlTopCountry}${currCountry}&apiKey=${apiKEY}`
+        // let qs = `${newsUrlTopCountry}${currCountry}&apiKey=${apiKEY}`
 
         // if (currCategory !== 'none') {
         //   qs += `category=${currCategory}&`;
@@ -33,16 +42,21 @@ export default function ApolloHome() {
 
         // qs += `apiKey=${apiKEY}`;
         // console.log('query string: ', qs)
-        return qs;
+        // return qs;
     }
 
     const fetchArticles = () => {
         (async () => {
             // debugger;
-            const qs = buildQueryString();
-            const res = await fetch(qs);
-            const { articles } = await res.json();
-            dispatch(setArticles(articles));
+            // const qs = buildQueryString();
+            const res = await Axios({
+                url: `${API}external`,
+                method: 'post',
+                data: normalizedData
+            })
+            const { resArticles } = res.data;
+            console.log("data:", res.data)
+            dispatch(setArticles(resArticles));
             // debugger;
             console.log('articles', articles)
             console.log('curr', currCountry)
