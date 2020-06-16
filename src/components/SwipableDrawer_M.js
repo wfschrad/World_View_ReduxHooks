@@ -1,4 +1,5 @@
 import React from 'react';
+import Axios from 'axios';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
@@ -19,7 +20,7 @@ import SearchIcon from '@material-ui/icons/SearchOutlined';
 import { useSelector, useDispatch } from 'react-redux';
 import CountrySelect from './CountrySelect';
 import CategorySelect from './CategorySelect';
-import { newsUrlTopCountry, apiKEY } from '../config';
+import { API } from '../config';
 import { setArticles } from '../store/state';
 import KeywordSelect from './KeywordSelect';
 
@@ -70,39 +71,34 @@ export default function SwipeableTemporaryDrawer() {
 
   const handleSearch = async () => {
     console.log('search button clicked')
-    // const storedArticles = localStorage.getItem(`worldViewArticles-${qs}`);
-    // if (storedArticles && storedArticles !== 'undefined') {
-    //   console.log('stored in...', storedArticles);
-    //   const parsedArticles = JSON.parse(storedArticles);
-    //   dispatch(setArticles(parsedArticles));
-    // } else {
+
+    console.log(currCountry)
+    if (!currCountry || currCountry === 'none') return;
+
+    console.log(currCategory)
+    console.log(currKeyword)
+
+    // add state variables
+
+
     try {
-      const response = await fetch(`${newsUrlTopCountry}${currCountry}&apiKey=${apiKEY}`);
-      // newsapi.v2.topHeadlines({
-      //     q: 'bitcoin',
-      //     category: 'business',
-      //     language: 'en',
-      //     country: 'us'
-      //   }).then(response => {
-      //     console.log(response);
-      //     /*
-      //       {
-      //         status: "ok",
-      //         articles: [...]
-      //       }
-      //     */
-      //   });
-      console.log('language en')
-      if (response.ok) {
-        const { articles } = await response.json();
-        // if (currCountry !== 'us') {
-        //     const testArticle = await translate(articles[0].title, 'en');
-        //     console.log('test article', testArticle)
-        // }
-        console.log('articles 64', articles)
-        dispatch(setArticles(articles));
+      const response = await Axios({
+        url: `${API}external`,
+        method: 'post',
+        data: {
+          currCountry,
+          currCategory,
+          currKeyword
+        }
+      })
+      if (!response.ok) throw Error('Search fetch failed (Swipable Drawer)');
+      console.log('response.data:', response.data)
+
+      const { resArticles } = response.data;
+       
+      dispatch(setArticles(resArticles));
         // localStorage.setItem(`worldViewArticles-${qs}`, JSON.stringify(articles));
-      }
+      
     } catch (e) { console.log(e); }
     // }
   }

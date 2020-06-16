@@ -52,17 +52,20 @@ export default function ApolloHome() {
             const res = await Axios({
                 url: `${API}external`,
                 method: 'post',
-                data: normalizedData
+                data: {
+                    currCountry,
+                    currCategory,
+                    currKeyword
+                }
             })
             const { resArticles } = res.data;
             console.log("data:", res.data)
             dispatch(setArticles(resArticles));
-            // debugger;
+            debugger;
             console.log('articles', articles)
             console.log('curr', currCountry)
             console.log('currC', currCategory)
             console.log('currK', currKeyword)
-
         })()
     }
 
