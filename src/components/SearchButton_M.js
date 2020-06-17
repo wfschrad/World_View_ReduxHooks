@@ -18,6 +18,7 @@ import { useHistory } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
+    backgroundColor: 'rgba(104, 5, 5, 1)'
   },
 }));
 
@@ -70,62 +71,25 @@ export default function IconLabelButtons() {
         // debugger;
         // const qs = buildQueryString();
         const res = await Axios({
-            url: `${API}external`,
-            method: 'post',
-            data: {
-                currCountry,
-                currCategory,
-                currKeyword
-            }
+          url: `${API}external`,
+          method: 'post',
+          data: {
+            currCountry,
+            currCategory,
+            currKeyword
+          }
         })
         const { resArticles } = res.data;
         console.log("data:", res.data)
         dispatch(setArticles(resArticles));
-        debugger;
         console.log('articles', articles)
         console.log('curr', currCountry)
         console.log('currC', currCategory)
         console.log('currK', currKeyword)
 
-    })()
+      })()
 
-
-      // const qs = buildQueryString();
-      // console.log('qs', qs)
-      // // const storedArticles = localStorage.getItem(`worldViewArticles-${qs}`);
-      // // if (storedArticles && storedArticles !== 'undefined') dispatch(setArticles(storedArticles));
-      // // else {
-      // const response = await fetch(qs);
-      // newsapi.v2.topHeadlines({
-      //     q: 'bitcoin',
-      //     category: 'business',
-      //     language: 'en',
-      //     country: 'us'
-      //   }).then(response => {
-      //     console.log(response);
-      //     /*
-      //       {
-      //         status: "ok",
-      //         articles: [...]
-      //       }
-      //     */
-      //   });
-      // if (response.ok) {
-      //   const { articles } = await response.json();
-        // if (currCountry !== 'us') {
-        //     const testArticle = await translate(articles[0].title, 'en');
-        //     console.log('test article', testArticle)
-        // }
-        // console.log('articles 64', articles)
-        debugger
-        // dispatch(setArticles(articles));
-        // localStorage.setItem(`worldViewArticles-${qs}`, JSON.stringify(articles));
-        // history.push('/');
-      //}
-     // else { throw Error('Error fetching') }
-      // }
     } catch (e) { console.log(e); }
-    // }
   }
 
   return (

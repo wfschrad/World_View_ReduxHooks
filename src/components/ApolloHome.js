@@ -61,7 +61,6 @@ export default function ApolloHome() {
             const { resArticles } = res.data;
             console.log("data:", res.data)
             dispatch(setArticles(resArticles));
-            debugger;
             console.log('articles', articles)
             console.log('curr', currCountry)
             console.log('currC', currCategory)
@@ -100,31 +99,3 @@ export default function ApolloHome() {
         </div>
     )
 }
-
-// export class ApolloHome extends Component {
-//     constructor(props) {
-//         super(props);
-//         const currCountry = useSelector((state) => state.currCountry);
-
-//         this.state = {
-//             currCountry
-//         }
-//     }
-
-//     async componentDidMount() {
-//         const res = await fetch(`${newsUrlTopCountry}ca&apiKey=${apiKEY}`);
-//         const { articles } = await res.json();
-//         console.log('articles', articles)
-//         console.log('curr', this.currCountry)
-//     }
-
-//     render() {
-//         return (
-//             <div>
-//                 Hello, Apollo!
-//             </div>
-//         )
-//     }
-// }
-
-// export default ApolloHome

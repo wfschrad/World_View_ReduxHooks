@@ -53,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
+        backgroundColor: 'rgba(104, 5, 5, 1)'
     },
 }));
 

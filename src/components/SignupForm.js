@@ -51,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
+        backgroundColor: 'rgba(104, 5, 5, 1)'
     },
 }));
 
@@ -136,6 +137,7 @@ export default function SignUp() {
                                 label="Email Address"
                                 name="email"
                                 autoComplete="email"
+                                indicatorColor={'rgba(104, 5, 5, 1)'}
                             />
                         </Grid>
                         <Grid item xs={12}>
