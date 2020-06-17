@@ -121,7 +121,7 @@ export default function MediaControlCard({ article }) {
             </div>
             <CardMedia
                 className={classes.cover}
-                image='/static/images/cards/live-from-space.jpg'
+                image={article.urlToImage}
                 title={article.title}
             />
         </Card>

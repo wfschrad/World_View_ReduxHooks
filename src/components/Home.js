@@ -69,7 +69,7 @@ const Home = () => {
                     // }
                     console.log('articles 64', articles)
                     dispatch(setArticles(articles));
-                    localStorage.setItem(`worldViewArticles-layoutDev-${currCountry}`, JSON.stringify(articles));
+                    // localStorage.setItem(`worldViewArticles-layoutDev-${currCountry}`, JSON.stringify(articles));
                 }
             } catch (e) {
                 console.log('res in catch:', response)
