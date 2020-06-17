@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function IconLabelButtons() {
+export default function IconLabelButtons(props) {
   const classes = useStyles();
 
   const currCountry = useSelector((state) => state.currCountry);
@@ -82,6 +82,10 @@ export default function IconLabelButtons() {
         const { resArticles } = res.data;
         console.log("data:", res.data)
         dispatch(setArticles(resArticles));
+
+        if (history.location.pathname !== '/') history.push('/');
+
+        console.log('history', history)
         console.log('articles', articles)
         console.log('curr', currCountry)
         console.log('currC', currCategory)
