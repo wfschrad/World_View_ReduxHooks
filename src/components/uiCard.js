@@ -98,7 +98,7 @@ export default function MediaControlCard({ article }) {
         // if (!res.ok) throw res;
     }
     // debugger
-    return (
+    return article && (
         <Card className={classes.root} >
             <div onClick={() => window.open(article.url)} className={classes.details}>
                 <CardContent className={classes.content}>
