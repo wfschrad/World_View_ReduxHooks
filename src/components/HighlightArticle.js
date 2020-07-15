@@ -1,4 +1,6 @@
 import React, { useContext } from 'react';
+const defaultImagePath = '../assets/images/wvLogo.png';
+
 
 const HighlightArticle = ({ article }) => {
     return (
@@ -12,7 +14,7 @@ const HighlightArticle = ({ article }) => {
                     article.description? article.description.slice(0,260):<span>Read Article</span>}
                 </div>
             </div>
-            <img className='highlight-article__img'src={article.urlToImage} alt={article.title}/>
+            <img className='highlight-article__img'src={article.urlToImage ? article.urlToImage : defaultImagePath} alt={article.title}/>
         </div>
     )
 }

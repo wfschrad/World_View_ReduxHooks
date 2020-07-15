@@ -95,10 +95,10 @@ export default function SwipeableTemporaryDrawer() {
       console.log('response.data:', response.data)
 
       const { resArticles } = response.data;
-       
+
       dispatch(setArticles(resArticles));
         // localStorage.setItem(`worldViewArticles-${qs}`, JSON.stringify(articles));
-      
+
     } catch (e) { console.log(e); }
     // }
   }
@@ -134,7 +134,7 @@ export default function SwipeableTemporaryDrawer() {
         <ListItem>
           <KeywordSelect className={classes.listItem} />
         </ListItem>
-        <ListItem>
+        <ListItem >
           <SearchButton onClick={handleSearch} />
         </ListItem>
         {/* {['Country', 'Category', 'Topic'].map((text, index) => (
@@ -153,7 +153,7 @@ export default function SwipeableTemporaryDrawer() {
         <React.Fragment key={anchor}>
           <SearchIcon
             onClick={toggleDrawer(anchor, true)}
-            style={{ fontSize: 30, marginLeft: '10px' }}>{anchor}
+            style={{ fontSize: 30, marginLeft: '10px', marginTop: '6px' }}>{anchor}
           </SearchIcon>
           <SwipeableDrawer
             anchor={anchor}

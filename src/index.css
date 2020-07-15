@@ -25,7 +25,7 @@
 }
 
 .nav-container__h1 {
-    font-family: cursive;
+    font-family: serif;
     color: white;
     font-size: 4em;
     font-weight: 900;
@@ -55,7 +55,7 @@
 .nav-container__right--loggedOut {
     color: white;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 20px;
     text-decoration: none;
     align-self: center;
     margin-left: 10px;
@@ -77,7 +77,7 @@
 }
 
 .demo-button:hover {
-    background-color: lightsalmon;
+    background-color: gray;
     color: white;
     font-weight: 900;
 }

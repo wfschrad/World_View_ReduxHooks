@@ -55,6 +55,13 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(3, 0, 2),
         backgroundColor: 'rgba(104, 5, 5, 1)'
     },
+    demoBtn: {
+        color: '#f50057',
+        fontWeight: 700,
+        borderRadius: '20%',
+        marginRight: 20,
+        minWidth: 100
+    }
 }));
 
 export default function SignIn() {
@@ -130,10 +137,17 @@ export default function SignIn() {
                         id="password"
                         autoComplete="current-password"
                     />
-                    <FormControlLabel
-                        control={<Checkbox value="remember" color="primary" />}
-                        label="Remember me"
-                    />
+                    <span style={{display: 'flex', justifyContent: 'space-between'}}>
+                        <FormControlLabel
+                            control={<Checkbox value="remember" color="primary" />}
+                            label="Remember me"
+                        />
+                        <Button
+                        className={classes.demoBtn}
+                    >
+                        Demo
+                    </Button>
+                    </span>
                     <Button
                         type="submit"
                         fullWidth
@@ -147,7 +161,7 @@ export default function SignIn() {
                         <Grid item xs>
                             <Link href="#" variant="body2">
                                 Forgot password?
-              </Link>
+                            </Link>
                         </Grid>
                         <Grid item>
                             <Link href="/signup" variant="body2">

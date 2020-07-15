@@ -14,6 +14,8 @@ import SkipNextIcon from '@material-ui/icons/SkipNext';
 
 import { API } from '../config';
 
+const defaultImagePath = '../assets/images/wvLogo.png';
+
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -121,7 +123,7 @@ export default function MediaControlCard({ article }) {
             </div>
             <CardMedia
                 className={classes.cover}
-                image={article.urlToImage}
+                image={article.urlToImage ? article.urlToImage : defaultImagePath}
                 title={article.title}
             />
         </Card>

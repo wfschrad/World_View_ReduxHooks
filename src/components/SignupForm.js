@@ -53,6 +53,12 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(3, 0, 2),
         backgroundColor: 'rgba(104, 5, 5, 1)'
     },
+    demoBtn: {
+        color: '#f50057',
+        fontWeight: 700,
+        borderRadius: '20%',
+        minWidth: 100
+    }
 }));
 
 export default function SignUp() {
@@ -113,7 +119,12 @@ export default function SignUp() {
                 </Avatar>
                 <Typography component="h1" variant="h5">
                     Join World View
-        </Typography>
+                </Typography>
+                <Button
+                    className={classes.demoBtn}
+                >
+                    Demo
+                </Button>
                 <form id="signupForm" className={classes.form} onSubmit={handleSignup}>
                     <div className='errors-container'></div>
                     <Grid container spacing={2}>
