@@ -153,7 +153,7 @@ export default function SwipeableTemporaryDrawer() {
         <React.Fragment key={anchor}>
           <SearchIcon
             onClick={toggleDrawer(anchor, true)}
-            style={{ fontSize: 30, marginLeft: '10px', marginTop: '6px' }}>{anchor}
+            style={{ fontSize: 30, marginLeft: '10px', marginTop: '6px', cursor: 'pointer' }}>{anchor}
           </SearchIcon>
           <SwipeableDrawer
             anchor={anchor}

@@ -186,7 +186,7 @@ export default function SwipeableTemporaryDrawer() {
                 <React.Fragment key={anchor}>
                     <MenuIcon
                         onClick={toggleDrawer(anchor, true)}
-                        style={{ fontSize: 30, marginLeft: '10px' }}>{anchor}
+                        style={{ fontSize: 30, marginLeft: '10px', cursor: 'pointer' }}>{anchor}
                     </MenuIcon>
                     <SwipeableDrawer
                         anchor={anchor}
