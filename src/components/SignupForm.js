@@ -104,6 +104,33 @@ export default function SignUp() {
         }
     }
 
+    const demoLogin = async () => {
+        try {
+            const res = await fetch(`${API}users/login`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    email: 'demo@gmail.com',
+                    password: 'demo'
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            if (!res.ok) {
+                throw res;
+            }
+            const { token, user: { id } } = await res.json();
+            // store access_token in localStorage:
+            localStorage.setItem('worldViewjtid_ACCESS_TOKEN', token);
+            localStorage.setItem('worldViewjtid_CURRENT_USER_ID', id);
+            dispatch(setUser(id));
+            return <Route render={(props) => <Redirect to='/' />} />
+        } catch (e) {
+            console.log(e);
+            handleErrors(e);
+        }
+    }
+
     const classes = useStyles();
     let history = useHistory();
     const user = useSelector((state) => state.user);
@@ -121,6 +148,7 @@ export default function SignUp() {
                     Join World View
                 </Typography>
                 <Button
+                    onClick={demoLogin}
                     className={classes.demoBtn}
                 >
                     Demo

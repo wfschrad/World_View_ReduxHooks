@@ -3,11 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { useHistory, Route, Redirect } from 'react-router-dom';
 
+import Button from '@material-ui/core/Button';
 import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/HomeOutlined';
 import { withTheme } from '@material-ui/core';
 import Swipable from './SwipableDrawer_M';
 import SwipableMenu from './SwipableDrawer_Menu_M'
+import { makeStyles } from '@material-ui/core/styles';
 
 import { setDrawerer } from '../store/state';
 import { setUser } from '../store/state';
@@ -15,11 +17,24 @@ import { handleErrors } from "./utils";
 import { API } from '../config';
 
 
+const useStyles = makeStyles((theme) => ({
+  demoBtn: {
+    color: '#000000'
+  },
+  demoBtn: {
+    '&:hover': {
+      color: 'gray',
+      fontWeight: 700
+    }
+  }
+}));
+
 
 const Navigation = () => {
   const currCountry = useSelector((state) => state.currCountry);
   const drawererIsOpen = useSelector((state) => state.drawererIsOpen)
   const user = useSelector((state) => state.user);
+  const classes = useStyles();
 
   let dispatch = useDispatch();
 
@@ -80,7 +95,7 @@ const Navigation = () => {
         {/* <span className='nav-container__center__country'>{`Current Country: ${currCountry.toUpperCase()}`}</span> */}
       </span>
       <span className='nav-container__right'>
-        {!user ? <button className='demo-button' onClick={demoLogin}>Demo</button> : null}
+        {/* {!user ? <Button className={classes.demoBtn} onClick={demoLogin}>Demo</Button> : null} */}
         <HomeIcon onClick={homeClick} style={{ fontSize: 30, marginLeft: '10px' }} />
         <SwipableMenu style={{ marginLeft: '30px' }} />
 

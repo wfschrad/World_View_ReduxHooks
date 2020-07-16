@@ -100,6 +100,33 @@ export default function SignIn() {
         }
     }
 
+    const demoLogin = async () => {
+        try {
+            const res = await fetch(`${API}users/login`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    email: 'demo@gmail.com',
+                    password: 'demo'
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            if (!res.ok) {
+                throw res;
+            }
+            const { token, user: { id } } = await res.json();
+            // store access_token in localStorage:
+            localStorage.setItem('worldViewjtid_ACCESS_TOKEN', token);
+            localStorage.setItem('worldViewjtid_CURRENT_USER_ID', id);
+            dispatch(setUser(id));
+            return <Route render={(props) => <Redirect to='/' />} />
+        } catch (e) {
+            console.log(e);
+            handleErrors(e);
+        }
+    }
+
     const user = useSelector((state) => state.user);
     if (user) return <Redirect to='/' />
 
@@ -137,15 +164,16 @@ export default function SignIn() {
                         id="password"
                         autoComplete="current-password"
                     />
-                    <span style={{display: 'flex', justifyContent: 'space-between'}}>
+                    <span style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
                             label="Remember me"
                         />
                         <Button
-                        className={classes.demoBtn}
-                    >
-                        Demo
+                            onClick={demoLogin}
+                            className={classes.demoBtn}
+                        >
+                            Demo
                     </Button>
                     </span>
                     <Button
