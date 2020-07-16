@@ -72,11 +72,11 @@ export default function SwipeableTemporaryDrawer() {
   const handleSearch = async () => {
     console.log('search button clicked')
 
-    console.log(currCountry)
+    // console.log(currCountry)
     if (!currCountry || currCountry === 'none') return;
 
-    console.log(currCategory)
-    console.log(currKeyword)
+    // console.log(currCategory)
+    // console.log(currKeyword)
 
     // add state variables
 
@@ -97,7 +97,7 @@ export default function SwipeableTemporaryDrawer() {
       const { resArticles } = response.data;
 
       dispatch(setArticles(resArticles));
-        // localStorage.setItem(`worldViewArticles-${qs}`, JSON.stringify(articles));
+      // localStorage.setItem(`worldViewArticles-${qs}`, JSON.stringify(articles));
 
     } catch (e) { console.log(e); }
     // }
@@ -131,9 +131,9 @@ export default function SwipeableTemporaryDrawer() {
         <ListItem>
           <CategorySelect className={classes.listItem} />
         </ListItem>
-        <ListItem>
+        {/* <ListItem>
           <KeywordSelect className={classes.listItem} />
-        </ListItem>
+        </ListItem> */}
         <ListItem >
           <SearchButton onClick={handleSearch} />
         </ListItem>
