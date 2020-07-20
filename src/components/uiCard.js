@@ -14,7 +14,7 @@ import SkipNextIcon from '@material-ui/icons/SkipNext';
 
 import { API } from '../config';
 
-const defaultImagePath = '../assets/images/wvLogo.png';
+const defaultImagePath = './logo2.jpg';
 
 const useStyles = makeStyles((theme) => ({
     root: {
