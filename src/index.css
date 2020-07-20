@@ -25,10 +25,10 @@
 }
 
 .nav-container__h1 {
-    font-family: serif;
+    font-family: Courgette;
     color: white;
     font-size: 4em;
-    font-weight: 900;
+    font-weight: 300;
     align-self: center;
 }
 
@@ -55,10 +55,12 @@
 .nav-container__right--loggedOut {
     color: white;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 16px;
     text-decoration: none;
     align-self: center;
-    margin-left: 10px;
+    margin-top: 6px;
+    margin-right: 6px;
+    font-family: Roboto;
 }
 
 .menu-button {

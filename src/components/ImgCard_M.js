@@ -12,6 +12,8 @@ import Typography from '@material-ui/core/Typography';
 
 import { API } from '../config';
 
+const defaultImagePath = './logo2.jpg';
+
 const useStyles = makeStyles({
     root: {
         maxWidth: 267,
@@ -33,7 +35,6 @@ const useStyles = makeStyles({
 
 export default function ImgMediaCard({ article }) {
     const classes = useStyles();
-    console.log('article:', article)
     const user = useSelector((state) => state.user);
     const history = useHistory();
 
@@ -46,7 +47,6 @@ export default function ImgMediaCard({ article }) {
         upVoteCount: 0,
         downVoteCount: 0
     });
-    console.log('body', body);
 
     const handleSaveClick = async () => {
         if (!user) history.push('/login');
@@ -91,7 +91,7 @@ export default function ImgMediaCard({ article }) {
                     component="img"
                     alt={article.title}
                     height="140"
-                    image={article.urlToImage}
+                    image={article.urlToImage ? article.urlToImage : defaultImagePath}
                     title={article.title}
                 />
                 <CardContent >
