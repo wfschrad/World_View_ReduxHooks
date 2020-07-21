@@ -24,7 +24,7 @@ function Copyright() {
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
             <Link color="inherit" href="https://material-ui.com/">
-                World View
+                World View News
       </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
